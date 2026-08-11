@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>MetricVibes — Your Analytics, Cloud & AI Implementation Partner</title>
+
+    <!-- Favicon -->
+    <link id="dynamic-favicon" rel="icon" type="image/png" href="/favicon-perfect.png?v=6">
+    <link rel="apple-touch-icon" href="/favicon-perfect.png?v=6">
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/assets/css/main.css" rel="stylesheet">
+    <link href="/assets/css/components.css" rel="stylesheet">
+    <link href="/assets/css/claude-partner.css" rel="stylesheet">
+    <!-- Dark Mode CSS will be added dynamically or just included here -->
+    <link href="/assets/css/dark-mode.css" rel="stylesheet">
+    <!-- Admin Panel CSS -->
+    <link href="/assets/css/admin.css" rel="stylesheet">
+
+    <!-- Favicon Animation Script -->
+    <script>
+        (function() {
+            let frame = 0;
+            // Wait for DOM to be ready
+            document.addEventListener('DOMContentLoaded', () => {
+                const favicon = document.getElementById('dynamic-favicon');
+                if (favicon) {
+                    setInterval(() => {
+                        frame = (frame + 1) % 12;
+                        favicon.href = `/fav-frames/frame-${frame}.png`;
+                    }, 150); // Speed of rotation
+                }
+            });
+        })();
+    </script>
+</head>
+<body class="has-announcement">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- JS Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</body>
+</html>

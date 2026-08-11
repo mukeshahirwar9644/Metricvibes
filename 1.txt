@@ -1,0 +1,109 @@
+# MetricVibes - Knowledge Transfer (KT) Document
+
+This document provides a complete technical overview of the MetricVibes web application. It is designed to help developers, DevOps engineers, and stakeholders understand the technology stack, architecture, and how the frontend and backend communicate.
+
+---
+
+## 1. System Architecture Overview
+
+The MetricVibes application follows a modern **Decoupled Architecture** (Client-Server model):
+- **Frontend (Client):** A Single Page Application (SPA) built with React that runs in the user's browser. It is responsible for the UI, animations, and routing.
+- **Backend (Server):** A RESTful API built with Python (FastAPI) that handles business logic, database operations, and data serving.
+
+The frontend communicates with the backend exclusively via HTTP requests (REST API) fetching and sending JSON data.
+
+---
+
+## 2. Technology Stack Detail
+
+### A. Frontend Technology Stack
+The frontend is built for speed, SEO, and smooth animations.
+
+| Technology | Purpose & Usage in Project |
+| :--- | :--- |
+| **React 19** | Core UI library used for building component-based interfaces (e.g., `Navbar.jsx`, `CaseStudies.jsx`). |
+| **Vite** | The modern build tool/bundler used instead of Create-React-App. It provides ultra-fast Hot Module Replacement (HMR) during development. |
+| **React Router DOM v7** | Handles client-side routing. Allows users to navigate between pages (Home, About, Blogs) without reloading the browser. |
+| **Vanilla CSS** | Styling is handled via raw CSS using CSS Variables (`components.css`). No heavy frameworks like Bootstrap or Tailwind are used, ensuring maximum performance and customizability. |
+| **Framer Motion** | Used for smooth UI animations and page transitions. |
+| **Icons** | FontAwesome (via CDN/classes like `fas fa-search`) and Lucide-React. |
+
+### B. Backend Technology Stack
+The backend is built to be lightweight, incredibly fast, and easy to scale.
+
+| Technology | Purpose & Usage in Project |
+| :--- | :--- |
+| **Python 3** | Core programming language for the backend. |
+| **FastAPI** | A modern, high-performance web framework for building APIs in Python. Selected over Django/Flask because of its speed and automatic documentation (Swagger UI). |
+| **SQLite** | A lightweight, file-based relational database (`sql_app.db`). Perfect for current data needs (blogs, contact forms). Can be easily upgraded to PostgreSQL later. |
+| **SQLAlchemy** | The Object-Relational Mapper (ORM). It allows developers to write Python code (in `models.py`) to interact with the database instead of writing raw SQL queries. |
+| **Uvicorn** | The ASGI web server used to run the FastAPI application. |
+
+---
+
+## 3. Core Features & API Endpoints
+
+The backend exposes several REST API endpoints that the React frontend consumes. 
+
+Note: FastAPI automatically generates interactive API documentation. When the backend is running locally, you can view all endpoints at `http://localhost:8000/docs`.
+
+### Available API Endpoints (`main.py`)
+1. **GET `/api/blogs`**
+   - **Purpose:** Retrieves a list of all published blogs from the database.
+   - **Frontend Usage:** Used by `BlogPage.jsx` to render the blog grid.
+2. **GET `/api/blogs/{slug}`**
+   - **Purpose:** Retrieves the full content of a specific blog based on its URL slug.
+3. **POST `/api/contact`**
+   - **Purpose:** Receives form data (Name, Email, Message) from the frontend and saves it to the database as a `ContactSubmission`.
+4. **POST `/api/newsletter`**
+   - **Purpose:** Saves a user's email to the `NewsletterSubscriber` database table.
+
+---
+
+## 4. How Frontend and Backend Work Together
+
+Here is the exact flow of data when a user interacts with the application:
+
+1. **User visits MetricVibes.com/blogs:**
+   - The server delivers the **React (Vite)** bundled HTML/JS files to the user's browser.
+   - React Router renders the `BlogPage.jsx` component.
+2. **Fetching Data:**
+   - As soon as `BlogPage.jsx` loads, a React `useEffect` hook triggers an HTTP `GET` request to the Python Backend (`http://backend-url/api/blogs`).
+3. **Processing Request (Backend):**
+   - FastAPI receives the request at the `/api/blogs` route.
+   - It uses SQLAlchemy to query the SQLite database (`sql_app.db`).
+   - The database returns the blog records, and FastAPI sends them back to the frontend as a **JSON response**.
+4. **Rendering UI:**
+   - The React frontend receives the JSON data, updates its internal State, and dynamically renders the Blog Cards on the screen.
+
+Important:
+**CORS (Cross-Origin Resource Sharing):** Because the frontend (e.g., localhost:5173) and backend (e.g., localhost:8000) run on different ports/domains, the backend `main.py` includes a `CORSMiddleware` configuration. This must be updated with the live frontend URL before deploying to production for security.
+
+---
+
+## 5. Development Workflow & Commands
+
+### Running the Frontend
+1. Open terminal and navigate to the frontend directory: `cd frontend`
+2. Install dependencies (first time only): `npm install`
+3. Start the development server: `npm run dev`
+4. Access at: `http://localhost:5173`
+
+### Running the Backend
+1. Open terminal and navigate to the backend directory: `cd backend`
+2. Activate the virtual environment: 
+   - Windows: `venv\Scripts\activate`
+   - Mac/Linux: `source venv/bin/activate`
+3. Install dependencies: `pip install -r requirements.txt` (or install FastAPI/Uvicorn/SQLAlchemy manually if no txt file).
+4. Start the server: `uvicorn main:app --reload`
+5. Access APIs at: `http://localhost:8000`
+
+---
+
+## 6. Future Deployment Strategy
+
+When ready for production, the application should be deployed as follows:
+
+- **Database:** Migrate from SQLite to **Google Cloud SQL (PostgreSQL)** for better concurrent performance.
+- **Backend:** Containerize the Python FastAPI app using Docker and deploy it to a Serverless platform like **Google Cloud Run** or **Render.com**.
+- **Frontend:** Build the React app (`npm run build`) and deploy the static files to a CDN-backed hosting service like **Vercel**, **Netlify**, or **Firebase Hosting**. Update the frontend `.env` file to point to the live backend URL.

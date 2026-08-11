@@ -1,0 +1,13 @@
+Abhi aapki is website mein Core Web Technologies aur Custom PHP ka istemal ho raha hai. Iska tech stack kuch is tarah hai:
+
+Backend / Logic:
+
+PHP (Native/Core PHP): Aapki website backend mein PHP ka use kar rahi hai (jaise index.php, app/config.php, views/). Kisi bade framework (jaise Laravel ya CodeIgniter) ke bina custom routing aur logic banaya gaya hai.
+Frontend / Design (User Interface):
+
+HTML5: Website ka structure (layout, sections, navbar) banane ke liye.
+CSS3 (Vanilla CSS): Styling ke liye custom CSS use ho rahi hai (main.css, components.css). Isme CSS Variables (jaise --color-primary, --space-4) ka bahut achha istemal kiya gaya hai.
+JavaScript (Vanilla JS): Interactivity ke liye (jaise dark mode toggle karne ke liye dark-mode.js aur dusre effects ke liye).
+Icons & Assets:
+
+Icons ke liye FontAwesome ka istemal hua hai aur kuch jagah SVG icons directly use kiye gaye hain.

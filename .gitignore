@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+backend/venv/
+venv/
+__pycache__/
+*.pyc
+
+# Builds
+frontend/dist/
+dist/
+build/
+
+# Environment and sensitive data
+.env
+backend/.env
+*.log
+
+# Databases
+backend/sql_app.db
+*.sqlite3
+
+# IDE / OS
+.DS_Store
+.vscode/
+.idea/
