@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { API_BASE_URL } from '../../config/api';
 
 export default function Footer() {
+    const [newsletterEmail, setNewsletterEmail] = useState('');
+    const [newsletterStatus, setNewsletterStatus] = useState(null);
+    const [submitting, setSubmitting] = useState(false);
+
+    const handleNewsletterSubmit = async (e) => {
+        e.preventDefault();
+        if (!newsletterEmail || submitting) return;
+        setSubmitting(true);
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/newsletter`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: newsletterEmail })
+            });
+            const data = await res.json();
+            if (res.ok && data.status === 'success') {
+                setNewsletterStatus({ type: 'success', message: 'Subscribed successfully!' });
+                setNewsletterEmail('');
+            } else {
+                setNewsletterStatus({ type: 'error', message: data.detail || 'Subscription failed' });
+            }
+        } catch (err) {
+            setNewsletterStatus({ type: 'error', message: 'Unable to connect to server' });
+        } finally {
+            setSubmitting(false);
+            setTimeout(() => setNewsletterStatus(null), 4000);
+        }
+    };
+
     return (
         <>
             {/* Footer */}
@@ -32,8 +62,8 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        {/* Quick Links */}
-                        <div>
+                        {/* Company Column */}
+                        <div className="footer__column">
                             <h4 className="footer__heading">Company</h4>
                             <div className="footer__links">
                                 <Link to="/about" className="footer__link">About Us</Link>
@@ -44,8 +74,8 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        {/* Services */}
-                        <div>
+                        {/* Services Column */}
+                        <div className="footer__column">
                             <h4 className="footer__heading">Services</h4>
                             <div className="footer__links">
                                 <Link to="/services/ga4-migration" className="footer__link">GA4 Migration</Link>
@@ -57,30 +87,48 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        {/* Resources */}
-                        <div>
+                        {/* Resources Column */}
+                        <div className="footer__column">
                             <h4 className="footer__heading">Resources</h4>
                             <div className="footer__links">
                                 <Link to="/blog" className="footer__link">Latest Articles</Link>
                                 <Link to="/case-studies" className="footer__link">Success Stories</Link>
-                                <Link to="/#faq" className="footer__link">FAQ</Link>
+                                <Link to="/contact" className="footer__link">FAQ</Link>
                                 <Link to="/privacy" className="footer__link">Privacy Policy</Link>
                                 <Link to="/terms" className="footer__link">Terms of Service</Link>
                             </div>
                         </div>
 
-                        {/* Newsletter */}
-                        <div>
+                        {/* Newsletter Column */}
+                        <div className="footer__column">
                             <h4 className="footer__heading">Stay Updated</h4>
                             <p className="footer__newsletter-text">
                                 Get the latest insights on analytics, cloud, and AI delivered to your inbox.
                             </p>
-                            <form className="footer__newsletter-form newsletter-form" onSubmit={(e) => { e.preventDefault(); alert('Thank you for subscribing to MetricVibes newsletter!'); }}>
-                                <input type="email" className="footer__newsletter-input" placeholder="your@email.com" aria-label="Email address" required />
-                                <button type="submit" className="btn btn--primary btn--sm">
-                                    <i className="fas fa-paper-plane"></i>
+                            <form className="footer__newsletter-form newsletter-form" onSubmit={handleNewsletterSubmit}>
+                                <input 
+                                    type="email" 
+                                    className="footer__newsletter-input" 
+                                    placeholder="your@email.com" 
+                                    aria-label="Email address" 
+                                    value={newsletterEmail}
+                                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                                    required 
+                                />
+                                <button type="submit" className="btn btn--primary btn--sm" disabled={submitting}>
+                                    <i className={submitting ? "fas fa-spinner fa-spin" : "fas fa-paper-plane"}></i>
                                 </button>
                             </form>
+                            {newsletterStatus && (
+                                <div style={{
+                                    marginTop: '8px',
+                                    fontSize: '0.8rem',
+                                    fontWeight: '600',
+                                    color: newsletterStatus.type === 'success' ? '#4ade80' : '#f87171'
+                                }}>
+                                    {newsletterStatus.message}
+                                </div>
+                            )}
                         </div>
                     </div>
 

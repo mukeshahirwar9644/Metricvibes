@@ -46,7 +46,7 @@ export default function Certifications() {
     line-height: 1.25;
 }
 .partners-title-gradient {
-    background: linear-gradient(135deg, #7851a9 0%, #9333ea 50%, #d4af37 100%);
+    background: linear-gradient(135deg, #7c3aed 0%, #9333ea 50%, #c084fc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -184,14 +184,67 @@ export default function Certifications() {
     font-weight: 700;
     color: #1a1a1a;
 }
+.partner-logo-adobe {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.partner-logo-adobe .adobe-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.3px;
+}
 [data-theme="dark"] .partner-logo-claude .text-main,
 [data-theme="dark"] .partner-logo-zoho .text-main,
 [data-theme="dark"] .partner-logo-zoho .text-sub,
-[data-theme="dark"] .partner-logo-generic {
+[data-theme="dark"] .partner-logo-generic,
+[data-theme="dark"] .partner-logo-adobe .adobe-text {
     color: #ffffff;
 }
 [data-theme="dark"] .partner-logo-claude .text-sub {
     color: #d8b4fe;
+}
+@media (max-width: 767.98px) {
+    .partners-section {
+        padding: 50px 16px;
+    }
+    .partners-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+    .partner-card {
+        width: 100%;
+        max-width: 320px;
+        min-width: 0;
+        height: 68px;
+        padding: 14px 20px;
+        box-sizing: border-box;
+    }
+    .partner-logo-claude .icon {
+        font-size: 1.5rem;
+    }
+    .partner-logo-claude .text-main {
+        font-size: 1.5rem;
+    }
+    .partner-logo-claude .text-sub {
+        font-size: 0.6rem;
+        letter-spacing: 0.3px;
+    }
+    .partner-logo-zoho .icon {
+        font-size: 1.8rem;
+    }
+    .partner-logo-zoho .text-sub {
+        font-size: 1.2rem;
+    }
+    .partner-logo-generic {
+        font-size: 1.05rem;
+    }
+    .partner-logo-generic i {
+        font-size: 1.4rem !important;
+    }
 }
 ` }} />
 
@@ -210,6 +263,29 @@ export default function Certifications() {
         </div>
         
         <div className="partners-grid">
+            {/*  Adobe Partner  */}
+            <div className="partner-card">
+                <div className="partner-logo-adobe">
+                    <div style={{
+                        background: "#FA0F00",
+                        width: "30px",
+                        height: "36px",
+                        borderRadius: "3px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "4px 5px",
+                        boxSizing: "border-box",
+                        flexShrink: 0
+                    }}>
+                        <svg viewBox="0 0 512 426.67" style={{ width: "100%", height: "100%" }}>
+                            <path fill="#FFFFFF" d="M312.4 0h199.6v426.7H312.4zM0 0h199.6v426.7H0zM256 158.2l76.7 186.3h-52.6l-20.1-51.5h-55.8L256 158.2z"/>
+                        </svg>
+                    </div>
+                    <span className="adobe-text">Adobe</span>
+                </div>
+            </div>
+
             {/*  Claude Partner  */}
             <div className="partner-card">
                 <div className="partner-logo-claude">

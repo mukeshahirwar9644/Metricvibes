@@ -40,6 +40,34 @@ const defaultBlogs = [
 
 export default function Resources() {
     const [displayBlogs, setDisplayBlogs] = useState(defaultBlogs);
+    const [newsletterEmail, setNewsletterEmail] = useState('');
+    const [newsletterStatus, setNewsletterStatus] = useState(null);
+    const [submitting, setSubmitting] = useState(false);
+
+    const handleNewsletterSubmit = async (e) => {
+        e.preventDefault();
+        if (!newsletterEmail || submitting) return;
+        setSubmitting(true);
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/newsletter`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: newsletterEmail })
+            });
+            const data = await res.json();
+            if (res.ok && data.status === 'success') {
+                setNewsletterStatus({ type: 'success', message: 'Subscribed successfully!' });
+                setNewsletterEmail('');
+            } else {
+                setNewsletterStatus({ type: 'error', message: data.detail || 'Subscription failed' });
+            }
+        } catch (err) {
+            setNewsletterStatus({ type: 'error', message: 'Unable to connect to server' });
+        } finally {
+            setSubmitting(false);
+            setTimeout(() => setNewsletterStatus(null), 4000);
+        }
+    };
 
     useEffect(() => {
         fetch(`${API_BASE_URL}/api/blogs`)
@@ -75,7 +103,7 @@ export default function Resources() {
 
     return (
         <>
-            <section className="section" id="resources" style={{ padding: "80px 0 35px 0" }}>
+            <section className="section" id="resources" style={{ padding: "35px 0 35px 0" }}>
                 <div className="container">
                     <div className="section__header" style={{ marginBottom: "50px" }}>
                         <span className="section__badge"><i className="fas fa-lightbulb"></i> Insights</span>
@@ -199,10 +227,32 @@ export default function Resources() {
                             <p style={{ color: "var(--text-secondary)", fontSize: "0.92rem", margin: "0", lineHeight: "1.6" }}>Actionable strategies on enterprise analytics, AI, and data architecture delivered weekly.</p>
                         </div>
                         
-                        <form className="newsletter-form" action="#" method="POST" style={{ display: "flex", gap: "12px", width: "100%", flex: "1", minWidth: "320px", maxWidth: "450px", position: "relative", zIndex: "2" }}>
-                            <input type="email" placeholder="Enter your work email" aria-label="Email" required style={{ flex: "1", padding: "12px 18px", border: "1px solid var(--border-color)", background: "var(--surface-secondary)", color: "var(--text-primary)", borderRadius: "8px", fontSize: "0.92rem", outline: "none", transition: "border-color 0.2s" }} />
-                            <button type="submit" style={{ background: "linear-gradient(135deg, #260e52 0%, #3b1378 100%)", color: "#ffffff", border: "none", padding: "12px 24px", borderRadius: "8px", fontWeight: "700", fontSize: "0.92rem", cursor: "pointer", transition: "opacity 0.2s", whiteSpace: "nowrap", boxShadow: "0 4px 14px rgba(38, 14, 82, 0.3)" }}>Subscribe</button>
-                        </form>
+                        <div style={{ flex: "1", minWidth: "320px", maxWidth: "450px", position: "relative", zIndex: "2" }}>
+                            <form className="newsletter-form" onSubmit={handleNewsletterSubmit} style={{ display: "flex", gap: "12px", width: "100%" }}>
+                                <input 
+                                    type="email" 
+                                    placeholder="Enter your work email" 
+                                    aria-label="Email" 
+                                    value={newsletterEmail}
+                                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                                    required 
+                                    style={{ flex: "1", padding: "12px 18px", border: "1px solid var(--border-color)", background: "var(--surface-secondary)", color: "var(--text-primary)", borderRadius: "8px", fontSize: "0.92rem", outline: "none", transition: "border-color 0.2s" }} 
+                                />
+                                <button type="submit" disabled={submitting} style={{ background: "linear-gradient(135deg, #260e52 0%, #3b1378 100%)", color: "#ffffff", border: "none", padding: "12px 24px", borderRadius: "8px", fontWeight: "700", fontSize: "0.92rem", cursor: "pointer", transition: "opacity 0.2s", whiteSpace: "nowrap", boxShadow: "0 4px 14px rgba(38, 14, 82, 0.3)" }}>
+                                    {submitting ? 'Subscribing...' : 'Subscribe'}
+                                </button>
+                            </form>
+                            {newsletterStatus && (
+                                <div style={{
+                                    marginTop: '8px',
+                                    fontSize: '0.85rem',
+                                    fontWeight: '600',
+                                    color: newsletterStatus.type === 'success' ? '#10b981' : '#ef4444'
+                                }}>
+                                    {newsletterStatus.message}
+                                </div>
+                            )}
+                        </div>
                         
                         {/* Subtle left accent line */}
                         <div style={{ position: "absolute", top: "0", left: "0", width: "4px", height: "100%", background: "var(--color-accent)" }}></div>

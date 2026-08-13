@@ -94,9 +94,13 @@ export default function AdminBlogs() {
                 ? `${API}/api/admin/blogs/${editingBlog.id}`
                 : `${API}/api/admin/blogs`;
 
+            const token = localStorage.getItem('adminToken');
             const res = await fetch(url, {
                 method: editingBlog ? 'PUT' : 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
                 body: JSON.stringify(form)
             });
 
@@ -119,7 +123,11 @@ export default function AdminBlogs() {
         if (!deleteTarget) return;
         setDeleting(true);
         try {
-            const res = await fetch(`${API}/api/admin/blogs/${deleteTarget.id}`, { method: 'DELETE' });
+            const token = localStorage.getItem('adminToken');
+            const res = await fetch(`${API}/api/admin/blogs/${deleteTarget.id}`, { 
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             const data = await res.json();
             if (data.status === 'success') {
                 setToast({ message: 'Blog deleted successfully!', type: 'success' });

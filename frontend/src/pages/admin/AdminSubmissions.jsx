@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AdminLayout, { API, Toast, ConfirmModal } from './AdminLayout';
+import AdminLayout, { API, Toast, ConfirmModal, formatIST } from './AdminLayout';
 
 export default function AdminSubmissions() {
     const [submissions, setSubmissions] = useState([]);
@@ -16,7 +16,16 @@ export default function AdminSubmissions() {
 
     const fetchSubmissions = async () => {
         try {
-            const res = await fetch(`${API}/api/admin/submissions`);
+            const token = localStorage.getItem('adminToken');
+            const res = await fetch(`${API}/api/admin/submissions`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (res.status === 401) {
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminUser');
+                window.location.href = '/admin/login';
+                return;
+            }
             const data = await res.json();
             if (data.status === 'success') setSubmissions(data.data);
         } catch (err) {
@@ -30,7 +39,11 @@ export default function AdminSubmissions() {
         if (!deleteTarget) return;
         setDeleting(true);
         try {
-            const res = await fetch(`${API}/api/admin/submissions/${deleteTarget.id}`, { method: 'DELETE' });
+            const token = localStorage.getItem('adminToken');
+            const res = await fetch(`${API}/api/admin/submissions/${deleteTarget.id}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             const data = await res.json();
             if (data.status === 'success') {
                 setToast({ message: 'Submission deleted!', type: 'success' });
@@ -122,9 +135,7 @@ export default function AdminSubmissions() {
                                                 </div>
                                             </td>
                                             <td style={{ color: 'var(--admin-text-secondary)', fontSize: '0.82rem', whiteSpace: 'nowrap' }}>
-                                                {sub.created_at
-                                                    ? new Date(sub.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })
-                                                    : '—'}
+                                                {formatIST(sub.created_at)}
                                             </td>
                                             <td>
                                                 <div className="admin-actions" style={{ justifyContent: 'flex-end' }}>

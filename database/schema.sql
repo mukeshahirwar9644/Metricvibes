@@ -60,6 +60,21 @@ CREATE TABLE IF NOT EXISTS `blogs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================================
+-- Blog Comments
+-- ============================================================
+CREATE TABLE IF NOT EXISTS `blog_comments` (
+    `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `blog_id` INT UNSIGNED NOT NULL,
+    `parent_id` INT UNSIGNED DEFAULT NULL,
+    `author_name` VARCHAR(100) NOT NULL,
+    `author_email` VARCHAR(100) NOT NULL,
+    `content` TEXT NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX `idx_comments_blog_id` (`blog_id`),
+    INDEX `idx_comments_parent_id` (`parent_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================================
 -- Case Studies
 -- ============================================================
 CREATE TABLE IF NOT EXISTS `case_studies` (

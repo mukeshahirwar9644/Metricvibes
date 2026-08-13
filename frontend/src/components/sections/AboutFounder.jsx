@@ -265,13 +265,57 @@ export default function AboutFounder() {
     border: 1px solid rgba(234, 88, 12, 0.3);
     color: #ea580c;
 }
-[data-theme="dark"] .cert-badge--claude {
-    background: rgba(234, 88, 12, 0.18);
-    color: #fb923c;
+.founder__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+@media (max-width: 991.98px) {
+    .section__header {
+        margin-bottom: 30px !important;
+    }
+    .founder__grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+    .founder__content {
+        width: 100% !important;
+    }
+    .founder__timeline {
+        padding-left: 0 !important;
+        margin-top: 20px !important;
+        width: 100% !important;
+    }
+    .founder-timeline {
+        margin-left: 12px !important;
+    }
+    .founder-timeline-event {
+        padding-left: 36px !important;
+        margin-bottom: 30px !important;
+    }
+    .founder-timeline-event::after {
+        width: 15px !important;
+    }
+    .custom-founder-card {
+        padding: 20px 16px !important;
+        margin-top: 24px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .founder-certifications {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+    }
+    .cert-badge {
+        font-size: 0.72rem !important;
+        padding: 5px 10px !important;
+    }
 }
 ` }} />
 
-<section className="section section--alt" id="founder">
+<section className="section section--alt" id="founder" style={{ padding: "60px 0 35px 0" }}>
     <div className="container">
         <div className="section__header" style={{"textAlign":"left","maxWidth":"800px","marginBottom":"50px"}}>
             <span className="section__badge" style={{"marginLeft":"0"}}><i className="fas fa-book-open"></i> Our Story</span>
@@ -281,7 +325,7 @@ export default function AboutFounder() {
             </p>
         </div>
 
-                <div className="founder__grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', alignItems: 'center' }}>
+        <div className="founder__grid">
             {/*  Content  */}
             <div className="founder__content">
                 <div style={{"borderLeft":"3px solid var(--color-accent)","paddingLeft":"20px","marginBottom":"25px"}}>

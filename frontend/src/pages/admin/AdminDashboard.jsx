@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AdminLayout, { API } from './AdminLayout';
+import AdminLayout, { API, formatIST } from './AdminLayout';
 
 export default function AdminDashboard() {
     const [stats, setStats] = useState({ blogs: 0, case_studies: 0, submissions: 0, subscribers: 0 });
@@ -13,10 +13,20 @@ export default function AdminDashboard() {
 
     const fetchData = async () => {
         try {
+            const token = localStorage.getItem('adminToken');
+            const authHeader = { 'Authorization': `Bearer ${token}` };
             const [statsRes, leadsRes] = await Promise.all([
-                fetch(`${API}/api/admin/stats`),
-                fetch(`${API}/api/admin/submissions`)
+                fetch(`${API}/api/admin/stats`, { headers: authHeader }),
+                fetch(`${API}/api/admin/submissions`, { headers: authHeader })
             ]);
+
+            if (statsRes.status === 401 || leadsRes.status === 401) {
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminUser');
+                window.location.href = '/admin/login';
+                return;
+            }
+
             const statsData = await statsRes.json();
             const leadsData = await leadsRes.json();
 
@@ -133,8 +143,8 @@ export default function AdminDashboard() {
                                         <td style={{ fontWeight: 600, color: '#fff' }}>{lead.name}</td>
                                         <td>{lead.email}</td>
                                         <td>{lead.company || '—'}</td>
-                                        <td style={{ color: 'var(--admin-text-secondary)', fontSize: '0.82rem' }}>
-                                            {lead.created_at ? new Date(lead.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—'}
+                                        <td style={{ color: 'var(--admin-text-secondary)', fontSize: '0.82rem', whiteSpace: 'nowrap' }}>
+                                            {formatIST(lead.created_at)}
                                         </td>
                                     </tr>
                                 ))

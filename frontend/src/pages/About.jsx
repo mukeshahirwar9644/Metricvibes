@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AnalyticsDashboard from '../components/sections/AnalyticsDashboard';
 
 
 export default function About() {
@@ -9,6 +8,32 @@ export default function About() {
         ...prev,
         [index]: !prev[index]
     }));
+
+    React.useEffect(() => {
+        let swiper = null;
+        const initSwiper = () => {
+            if (window.Swiper) {
+                swiper = new window.Swiper('.about-testimonial-slider', {
+                    loop: true,
+                    autoplay: {
+                        delay: 4000,
+                        disableOnInteraction: false,
+                    },
+                    speed: 800,
+                    spaceBetween: 20,
+                    grabCursor: true
+                });
+            } else {
+                setTimeout(initSwiper, 100);
+            }
+        };
+        initSwiper();
+        return () => {
+            if (swiper && swiper.destroy) {
+                swiper.destroy(true, true);
+            }
+        };
+    }, []);
 
     const faqs = [
         {
@@ -69,10 +94,35 @@ export default function About() {
     </div>
 </section>
 
+{/* Style overrides for mobile responsiveness */}
+<style dangerouslySetInnerHTML={{ __html: `
+    .about-details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+    }
+    .about-principles-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+    @media (max-width: 991.98px) {
+        .about-details-grid {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+        }
+        .about-principles-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+    }
+` }} />
+
 {/*  About Details Section  */}
 <section className="section" style={{ paddingTop: '20px', paddingBottom: '40px' }}>
     <div className="container">
-        <div style={{"display":"grid","gridTemplateColumns":"1fr 1fr","gap":"40px","alignItems":"center"}}>
+        <div className="about-details-grid">
             
             {/*  Left Content  */}
             <div>
@@ -139,9 +189,65 @@ export default function About() {
                 </Link>
             </div>
 
-            {/*  Right — Interactive Dashboard  */}
-            <div style={{"position":"relative","padding":"16px"}}>
-                <AnalyticsDashboard />
+            {/* Right — Floating Testimonial Slider (Exact Hero format) */}
+            <div className="hero__visual" style={{ width: '100%', maxWidth: '540px', margin: '0 auto' }}>
+                <div className="swiper about-testimonial-slider hero-testimonial-slider">
+                    <div className="swiper-wrapper">
+                        {/* Slide 1 */}
+                        <div className="swiper-slide">
+                            <div className="hero__testimonial-wrapper">
+                                <div className="hero__testimonial-image">
+                                    <img src="/assets/img/team/jisoo.jpg" alt="Jisoo Hong" />
+                                </div>
+                                <div className="hero__testimonial-content">
+                                    <div className="hero__testimonial-header">
+                                        <h4 className="hero__testimonial-name">Jisoo Hong</h4>
+                                        <p className="hero__testimonial-role">Product Manager - VistaJet</p>
+                                    </div>
+                                    <p className="hero__testimonial-text">
+                                        Their implementation on our website, android, and iOS apps empowered me to generate powerful reports for stakeholders, driving crucial decisions in our flight route planning and app/web enhancements for lead conversion. Moreover, their insights into lead attribution and ROI optimization significantly enhanced our marketing spend efficiency.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Slide 2 */}
+                        <div className="swiper-slide">
+                            <div className="hero__testimonial-wrapper">
+                                <div className="hero__testimonial-image">
+                                    <img src="/assets/img/team/Alona Smahliuk.jpg" alt="Eugene Paik" />
+                                </div>
+                                <div className="hero__testimonial-content">
+                                    <div className="hero__testimonial-header">
+                                        <h4 className="hero__testimonial-name">Eugene Paik</h4>
+                                        <p className="hero__testimonial-role">CEO - Consulting Firm</p>
+                                    </div>
+                                    <p className="hero__testimonial-text">
+                                        I had issues integrating kartra and mixpanel, and Metric Vibes did a FANTASTIC JOB. I would highly recommend 10/10. [Their] delivery was very fast and accurate. What's more, they did a full documentation of the detailed steps and also the code. I will definitely revisit and also introduce my friends that need data issues solved.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Slide 3 */}
+                        <div className="swiper-slide">
+                            <div className="hero__testimonial-wrapper">
+                                <div className="hero__testimonial-image">
+                                    <img src="/assets/img/team/Eugene Paik.jpg" alt="Alona Smahliuk" />
+                                </div>
+                                <div className="hero__testimonial-content">
+                                    <div className="hero__testimonial-header">
+                                        <h4 className="hero__testimonial-name">Alona Smahliuk</h4>
+                                        <p className="hero__testimonial-role">Technology Coordinator - Ticket Network</p>
+                                    </div>
+                                    <p className="hero__testimonial-text">
+                                        Metric Vibes was extremely helpful in consulting, creating a documented plan, and executing our GA4 migration for 6 sites. They demonstrated strong expertise in analytics and were able to provide insights to our team. We would work with them again
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
         </div>
@@ -155,7 +261,7 @@ export default function About() {
             Built on <span className="text-gradient">Core Principles</span>
         </h2>
         
-        <div style={{"display":"grid","gridTemplateColumns":"repeat(3, 1fr)","gap":"24px"}}>
+        <div className="about-principles-grid">
             <div className="why-choose-card">
                 <div style={{"width":"56px","height":"56px","background":"linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%)","borderRadius":"14px","display":"flex","alignItems":"center","justifyContent":"center","marginBottom":"24px","boxShadow":"0 10px 20px rgba(79, 70, 229, 0.25)"}}>
                     <i className="fas fa-crosshairs" style={{"fontSize":"1.6rem","color":"#fff"}}></i>

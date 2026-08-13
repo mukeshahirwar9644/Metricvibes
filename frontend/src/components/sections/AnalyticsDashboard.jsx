@@ -30,6 +30,10 @@ const keyframes = `
   0%,100%{opacity:1;transform:scale(1)}
   50%{opacity:.7;transform:scale(1.15)}
 }
+@keyframes mvLogoZoom {
+  0%, 100% { transform: translate(-50%,-50%) scale(1); }
+  50% { transform: translate(-50%,-50%) scale(1.18); }
+}
 @keyframes mvDotPulse {
   0%,100%{opacity:0; transform:scale(0.5); box-shadow:0 0 0 0 rgba(249,115,22,0)}
   50%{opacity:1; transform:scale(1.2); box-shadow:0 0 0 6px rgba(249,115,22,0.3)}
@@ -112,18 +116,63 @@ function DottedWorldMap() {
   );
 }
 
-/* ───── mini sparkline for revenue card ───── */
-function MiniSparkline({ data = [20, 35, 25, 45, 40, 55, 50, 65], color = '#3b82f6' }) {
-  const w = 90, h = 30;
-  const max = Math.max(...data), min = Math.min(...data);
-  const pts = data.map((v, i) => {
-    const x = (i / (data.length - 1)) * w;
-    const y = h - ((v - min) / (max - min || 1)) * h;
-    return `${x},${y}`;
-  }).join(' ');
+/* ───── 5 rising vertical growth arrows (Taller & Bolder Scale) ───── */
+function MiniSparkline({ color = '#7c3aed' }) {
+  const w = 76, h = 34;
   return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ display: 'block' }}>
-      <polyline points={pts} fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    <svg width={w} height={h} viewBox="0 0 76 34" style={{ display: 'block', overflow: 'visible' }}>
+      <defs>
+        <linearGradient id="arrow5Grad1" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stopColor="#c7d2fe" />
+          <stop offset="100%" stopColor="#818cf8" />
+        </linearGradient>
+        <linearGradient id="arrow5Grad2" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stopColor="#818cf8" />
+          <stop offset="100%" stopColor="#6366f1" />
+        </linearGradient>
+        <linearGradient id="arrow5Grad3" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stopColor="#6366f1" />
+          <stop offset="100%" stopColor="#7c3aed" />
+        </linearGradient>
+        <linearGradient id="arrow5Grad4" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stopColor="#7c3aed" />
+          <stop offset="100%" stopColor="#8b5cf6" />
+        </linearGradient>
+        <linearGradient id="arrow5Grad5" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stopColor="#8b5cf6" />
+          <stop offset="100%" stopColor="#a855f7" />
+        </linearGradient>
+      </defs>
+
+      {/* Arrow 1 (Smallest) */}
+      <g>
+        <rect x="3" y="22" width="6" height="12" rx="1.5" fill="url(#arrow5Grad1)" opacity="0.75" />
+        <polygon points="6,15 0.5,23 11.5,23" fill="#818cf8" opacity="0.8" />
+      </g>
+
+      {/* Arrow 2 */}
+      <g>
+        <rect x="19" y="17" width="6" height="17" rx="1.5" fill="url(#arrow5Grad2)" opacity="0.85" />
+        <polygon points="22,10 16.5,18 27.5,18" fill="#6366f1" opacity="0.88" />
+      </g>
+
+      {/* Arrow 3 */}
+      <g>
+        <rect x="35" y="12" width="6" height="22" rx="1.5" fill="url(#arrow5Grad3)" opacity="0.9" />
+        <polygon points="38,5 32.5,13 43.5,13" fill="#7c3aed" opacity="0.92" />
+      </g>
+
+      {/* Arrow 4 */}
+      <g>
+        <rect x="51" y="7" width="6" height="27" rx="1.5" fill="url(#arrow5Grad4)" opacity="0.95" />
+        <polygon points="54,0 48.5,8 59.5,8" fill="#8b5cf6" opacity="0.96" />
+      </g>
+
+      {/* Arrow 5 (Tallest) */}
+      <g>
+        <rect x="67" y="2" width="6" height="32" rx="1.5" fill="url(#arrow5Grad5)" />
+        <polygon points="70,-5 64.5,3 75.5,3" fill="#a855f7" />
+      </g>
     </svg>
   );
 }
@@ -356,17 +405,15 @@ export default function AnalyticsDashboard() {
 
       {/* ── Main container card ── */}
       <motion.div
+        className="analytics-dashboard-card"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         style={{
           position: 'relative',
-          background: '#fff',
-          borderRadius: '24px',
-          border: '1px solid rgba(0,0,0,0.06)',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04)',
-          padding: '20px',
-          minHeight: '480px',
+          borderRadius: '20px',
+          padding: '14px',
+          minHeight: '370px',
           overflow: 'hidden',
         }}
       >
@@ -376,31 +423,33 @@ export default function AnalyticsDashboard() {
         {/* Connecting lines from center to pills */}
         <ConnectingLines />
 
-        {/* Central hub dot */}
+        {/* Central hub dot with Clean MetricVibes Icon (Compact Size) */}
         <div style={{
           position: 'absolute',
           top: '48%',
           left: '48%',
           transform: 'translate(-50%,-50%)',
           zIndex: 14,
+          animation: 'mvLogoZoom 2.8s ease-in-out infinite',
         }}>
           <div style={{
-            width: '36px', height: '36px', borderRadius: '50%',
-            background: 'linear-gradient(135deg, #8b5cf6, #6366f1)',
-            boxShadow: '0 0 0 8px rgba(139,92,246,0.15), 0 0 0 16px rgba(139,92,246,0.07)',
+            width: '26px', height: '26px', borderRadius: '50%',
+            background: 'linear-gradient(135deg, #7c3aed, #4f46e5)',
+            boxShadow: '0 0 0 4px rgba(124,58,237,0.25), 0 0 0 8px rgba(124,58,237,0.1), 0 4px 14px rgba(124, 58, 237, 0.4)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
+            overflow: 'hidden'
           }}>
-            <Activity size={16} color="#fff" />
+            <img src="/favicon-circle-centered.png" alt="MetricVibes" style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.12)', borderRadius: '50%' }} />
           </div>
         </div>
 
         {/* ── Floating notification badges ── */}
         <NotifBadge
           icon={Trophy}
-          bg="linear-gradient(135deg, #ecfdf5, #d1fae5)"
-          color="#059669"
-          border="1px solid rgba(5,150,105,0.15)"
-          style={{ top: '4%', left: '15%' }}
+          bg="linear-gradient(135deg, #f5f3ff, #ede9fe)"
+          color="#7c3aed"
+          border="1px solid rgba(124,58,237,0.18)"
+          style={{ top: '3%', left: '26%' }}
           delay={0}
           anim="mvFloat2"
         >
@@ -436,14 +485,14 @@ export default function AnalyticsDashboard() {
           bg="linear-gradient(135deg, #f5f3ff, #ede9fe)"
           color="#311e72"
           border="1px solid rgba(49,30,114,0.12)"
-          style={{ bottom: '22%', right: '3%' }}
+          style={{ bottom: '20.5%', right: '4%', padding: '5px 11px', fontSize: '0.71rem' }}
           delay={0.45}
           anim="mvFloat2"
         >
-          Tracking 50+ Countries
+          Tracking 5+ Countries
         </NotifBadge>
 
-        {/* ── Revenue card (top-right) ── */}
+        {/* ── Revenue card (top-right - Compact) ── */}
         <motion.div
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -453,22 +502,22 @@ export default function AnalyticsDashboard() {
             top: '3%',
             right: '4%',
             background: '#fff',
-            borderRadius: '16px',
-            padding: '12px 14px',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
+            borderRadius: '12px',
+            padding: '8px 10px',
+            boxShadow: '0 4px 18px rgba(0,0,0,0.06)',
             border: '1px solid rgba(0,0,0,0.05)',
             zIndex: 18,
-            minWidth: '110px',
+            minWidth: '92px',
           }}
         >
-          <div style={{ fontSize: '0.55rem', fontWeight: '600', color: '#94a3b8', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '2px' }}>
-            IMPLEMENTATIONS · YTD
+          <div style={{ fontSize: '0.48rem', fontWeight: '700', color: '#94a3b8', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '1px' }}>
+            PROJECTS DELIVERED
           </div>
-          <div style={{ fontSize: '1.4rem', fontWeight: '800', color: '#0f172a', letterSpacing: '-0.03em', marginBottom: '4px' }}>
-            <AnimCount value={500} suffix="+" />
+          <div style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0f172a', letterSpacing: '-0.03em', marginBottom: '2px' }}>
+            <AnimCount value={50} suffix="+" />
           </div>
-          <div style={{ transform: 'scale(0.8)', transformOrigin: 'left bottom' }}>
-            <MiniSparkline data={[120, 180, 160, 240, 220, 320, 380, 500]} color="#311e72" />
+          <div style={{ transform: 'scale(0.85)', transformOrigin: 'left bottom', marginTop: '4px' }}>
+            <MiniSparkline color="#7c3aed" />
           </div>
         </motion.div>
 
@@ -482,30 +531,32 @@ export default function AnalyticsDashboard() {
             bottom: '4%',
             left: '3%',
             background: '#fff',
-            borderRadius: '12px',
-            padding: '10px 12px',
-            boxShadow: '0 6px 20px rgba(0,0,0,0.08)',
+            borderRadius: '10px',
+            padding: '7px 9px',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
             border: '1px solid rgba(0,0,0,0.05)',
             zIndex: 18,
-            minWidth: '110px',
+            minWidth: '92px',
           }}
         >
           {/* Mac dots */}
-          <div style={{ display: 'flex', gap: '3px', marginBottom: '5px' }}>
-            <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#ef4444' }} />
-            <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#f59e0b' }} />
-            <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#22c55e' }} />
+          <div style={{ display: 'flex', gap: '3px', marginBottom: '3px' }}>
+            <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#ef4444' }} />
+            <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#f59e0b' }} />
+            <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#22c55e' }} />
           </div>
-          <div style={{ fontSize: '0.5rem', fontWeight: '600', color: '#94a3b8', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '2px' }}>
+          <div style={{ fontSize: '0.45rem', fontWeight: '700', color: '#94a3b8', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '1px' }}>
             TRACKING ACCURACY
           </div>
-          <div style={{ fontSize: '1.2rem', fontWeight: '800', color: '#0f172a', letterSpacing: '-0.03em' }}>
+          <div style={{ fontSize: '1.02rem', fontWeight: '800', color: '#0f172a', letterSpacing: '-0.03em' }}>
             99.7%
           </div>
-          <div style={{ fontSize: '0.55rem', fontWeight: '600', color: '#22c55e', marginTop: '1px', marginBottom: '4px' }}>
+          <div style={{ fontSize: '0.48rem', fontWeight: '600', color: '#22c55e', marginTop: '1px', marginBottom: '3px' }}>
             ▲ +4.2 pts vs LW
           </div>
-          <BarDots />
+          <div style={{ transform: 'scale(0.82)', transformOrigin: 'left top' }}>
+            <BarDots />
+          </div>
         </motion.div>
 
         {/* ── Platform pills scattered on the map ── */}
@@ -516,7 +567,7 @@ export default function AnalyticsDashboard() {
         <PlatformPill name="BigQuery" logo="B" color="#669df6" style={{ top: '42%', right: '15%' }} delay={0.32} blinkDelay={0.3} />
         <PlatformPill name="Amplitude" logo="A" color="#1c1c84" style={{ top: '62%', right: '28%' }} delay={0.40} blinkDelay={0.7} />
         <PlatformPill name="Looker" logo="L" color="#4285f4" style={{ bottom: '30%', left: '48%' }} delay={0.48} blinkDelay={1.5} />
-        <PlatformPill name="Snowflake" logo="S" color="#29b5e8" style={{ top: '65%', left: '15%' }} delay={0.56} blinkDelay={1.0} />
+        <PlatformPill name="Snowflake" logo="S" color="#29b5e8" style={{ top: '50%', left: '14%' }} delay={0.56} blinkDelay={1.0} />
         <PlatformPill name="Firebase" logo="F" color="#f59e0b" style={{ top: '30%', left: '52%' }} delay={0.64} blinkDelay={0.5} />
         <PlatformPill name="Hotjar" logo="H" color="#ef4444" style={{ bottom: '28%', right: '42%' }} delay={0.72} blinkDelay={1.8} />
         <PlatformPill name="Segment" logo="S" color="#22c55e" style={{ top: '48%', left: '58%' }} delay={0.80} blinkDelay={0.6} />
@@ -539,7 +590,7 @@ export default function AnalyticsDashboard() {
           transition={{ delay: 0.8, duration: 0.5 }}
           style={{
             position: 'absolute',
-            bottom: '8%',
+            bottom: '3.5%',
             right: '6%',
             display: 'flex',
             gap: '32px',

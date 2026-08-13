@@ -8,7 +8,9 @@ const emptyCaseStudy = {
     metric_1_value: '', metric_1_label: '',
     metric_2_value: '', metric_2_label: '',
     metric_3_value: '', metric_3_label: '',
-    color1: '#7851A9', color2: '#D4AF37'
+    color1: '#7c3aed', color2: '#c084fc',
+    about: '', challenge: '', goals: '', results: '', tools: '',
+    testimonial_name: '', testimonial_role: '', testimonial_quote: ''
 };
 
 export default function AdminCaseStudies() {
@@ -37,7 +39,10 @@ export default function AdminCaseStudies() {
 
     const fetchStudies = async () => {
         try {
-            const res = await fetch(`${API}/api/admin/case-studies`);
+            const token = localStorage.getItem('adminToken');
+            const res = await fetch(`${API}/api/admin/case-studies`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             const data = await res.json();
             if (data.status === 'success') setStudies(data.data);
         } catch (err) {
@@ -67,8 +72,16 @@ export default function AdminCaseStudies() {
             metric_2_label: study.metric_2_label || '',
             metric_3_value: study.metric_3_value || '',
             metric_3_label: study.metric_3_label || '',
-            color1: study.color1 || '#7851A9',
-            color2: study.color2 || '#D4AF37'
+            color1: study.color1 || '#7c3aed',
+            color2: study.color2 || '#c084fc',
+            about: study.about || '',
+            challenge: study.challenge || '',
+            goals: study.goals || '',
+            results: study.results || '',
+            tools: study.tools || '',
+            testimonial_name: study.testimonial_name || '',
+            testimonial_role: study.testimonial_role || '',
+            testimonial_quote: study.testimonial_quote || ''
         });
         setShowModal(true);
     };
@@ -100,9 +113,13 @@ export default function AdminCaseStudies() {
                 ? `${API}/api/admin/case-studies/${editingStudy.id}`
                 : `${API}/api/admin/case-studies`;
 
+            const token = localStorage.getItem('adminToken');
             const res = await fetch(url, {
                 method: editingStudy ? 'PUT' : 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
                 body: JSON.stringify(form)
             });
 
@@ -125,7 +142,11 @@ export default function AdminCaseStudies() {
         if (!deleteTarget) return;
         setDeleting(true);
         try {
-            const res = await fetch(`${API}/api/admin/case-studies/${deleteTarget.id}`, { method: 'DELETE' });
+            const token = localStorage.getItem('adminToken');
+            const res = await fetch(`${API}/api/admin/case-studies/${deleteTarget.id}`, { 
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             const data = await res.json();
             if (data.status === 'success') {
                 setToast({ message: 'Case study deleted!', type: 'success' });
@@ -325,6 +346,52 @@ export default function AdminCaseStudies() {
                                             <input type="color" name="color2" className="admin-form-color" value={form.color2} onChange={handleChange} />
                                             <input type="text" name="color2" className="admin-form-input" style={{ flex: 1 }} value={form.color2} onChange={handleChange} />
                                         </div>
+                                    </div>
+
+                                    {/* --- CASE STUDY BRIEF DETAILS --- */}
+                                    <div className="admin-form-group admin-form-grid--full" style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '16px', marginTop: '8px' }}>
+                                        <h4 style={{ color: '#7c3aed', fontSize: '0.95rem', fontWeight: '700', margin: '0 0 12px' }}>
+                                            <i className="fas fa-file-alt" style={{ marginRight: '6px' }}></i> Case Study Brief Details
+                                        </h4>
+                                    </div>
+
+                                    <div className="admin-form-group admin-form-grid--full">
+                                        <label className="admin-form-label">About Client (Background Brief)</label>
+                                        <textarea name="about" className="admin-form-textarea" rows="3" placeholder="Overview about the client business and background..." value={form.about} onChange={handleChange}></textarea>
+                                    </div>
+
+                                    <div className="admin-form-group admin-form-grid--full">
+                                        <label className="admin-form-label">The Challenge / Problem Statement</label>
+                                        <textarea name="challenge" className="admin-form-textarea" rows="3" placeholder="Key challenges and issues the client was facing..." value={form.challenge} onChange={handleChange}></textarea>
+                                    </div>
+
+                                    <div className="admin-form-group admin-form-grid--full">
+                                        <label className="admin-form-label">Project Goals (One goal per line)</label>
+                                        <textarea name="goals" className="admin-form-textarea" rows="3" placeholder="Goal 1&#10;Goal 2&#10;Goal 3" value={form.goals} onChange={handleChange}></textarea>
+                                    </div>
+
+                                    <div className="admin-form-group admin-form-grid--full">
+                                        <label className="admin-form-label">Key Results (One result per line)</label>
+                                        <textarea name="results" className="admin-form-textarea" rows="3" placeholder="Result 1&#10;Result 2&#10;Result 3" value={form.results} onChange={handleChange}></textarea>
+                                    </div>
+
+                                    <div className="admin-form-group admin-form-grid--full">
+                                        <label className="admin-form-label">Tools & Stack Used (Comma separated)</label>
+                                        <input type="text" name="tools" className="admin-form-input" placeholder="e.g. ga4, mixpanel, gtm, looker-studio, android" value={form.tools} onChange={handleChange} />
+                                    </div>
+
+                                    {/* Testimonial */}
+                                    <div className="admin-form-group">
+                                        <label className="admin-form-label">Testimonial Client Name</label>
+                                        <input type="text" name="testimonial_name" className="admin-form-input" placeholder="e.g. Eugene Paik" value={form.testimonial_name} onChange={handleChange} />
+                                    </div>
+                                    <div className="admin-form-group">
+                                        <label className="admin-form-label">Client Role / Designation</label>
+                                        <input type="text" name="testimonial_role" className="admin-form-input" placeholder="e.g. VP of Product - Retail Brand" value={form.testimonial_role} onChange={handleChange} />
+                                    </div>
+                                    <div className="admin-form-group admin-form-grid--full">
+                                        <label className="admin-form-label">Client Quote / Testimonial</label>
+                                        <textarea name="testimonial_quote" className="admin-form-textarea" rows="2" placeholder="Client review or feedback quote..." value={form.testimonial_quote} onChange={handleChange}></textarea>
                                     </div>
                                 </div>
                             </div>

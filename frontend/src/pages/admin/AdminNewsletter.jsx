@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AdminLayout, { API, Toast } from './AdminLayout';
+import AdminLayout, { API, Toast, ConfirmModal, formatIST } from './AdminLayout';
 
 export default function AdminNewsletter() {
     const [subscribers, setSubscribers] = useState([]);
@@ -13,7 +13,16 @@ export default function AdminNewsletter() {
 
     const fetchSubscribers = async () => {
         try {
-            const res = await fetch(`${API}/api/admin/newsletter`);
+            const token = localStorage.getItem('adminToken');
+            const res = await fetch(`${API}/api/admin/newsletter`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (res.status === 401) {
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminUser');
+                window.location.href = '/admin/login';
+                return;
+            }
             const data = await res.json();
             if (data.status === 'success') setSubscribers(data.data);
         } catch (err) {
@@ -89,10 +98,8 @@ export default function AdminNewsletter() {
                                                     {sub.email}
                                                 </a>
                                             </td>
-                                            <td style={{ color: 'var(--admin-text-secondary)', fontSize: '0.85rem' }}>
-                                                {sub.subscribed_at
-                                                    ? new Date(sub.subscribed_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-                                                    : '—'}
+                                            <td style={{ color: 'var(--admin-text-secondary)', fontSize: '0.85rem', whiteSpace: 'nowrap' }}>
+                                                {formatIST(sub.subscribed_at)}
                                             </td>
                                         </tr>
                                     ))

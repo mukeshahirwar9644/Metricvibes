@@ -2,7 +2,7 @@
    MetricVibes Admin Panel — Premium Dark Theme
    ============================================================ */
 
-:root {
+:root, [data-admin-theme="dark"] {
     --admin-bg: #0F172A;
     --admin-sidebar-bg: #0B1023;
     --admin-card-bg: #1E293B;
@@ -18,6 +18,86 @@
     --admin-info: #3B82F6;
     --admin-radius: 12px;
     --admin-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --admin-header-bg: #0F172A;
+    --admin-input-bg: #0F172A;
+    --admin-table-hover: rgba(255, 255, 255, 0.02);
+}
+
+[data-admin-theme="light"] {
+    --admin-bg: #F8FAFC;
+    --admin-sidebar-bg: #FFFFFF;
+    --admin-card-bg: #FFFFFF;
+    --admin-card-border: #E2E8F0;
+    --admin-text-primary: #0F172A;
+    --admin-text-secondary: #64748B;
+    --admin-accent: #7C3AED;
+    --admin-accent-hover: #6D28D9;
+    --admin-accent-gradient: linear-gradient(135deg, #7C3AED, #4F46E5);
+    --admin-header-bg: #FFFFFF;
+    --admin-input-bg: #F1F5F9;
+    --admin-table-hover: #F8FAFC;
+}
+
+[data-admin-theme="light"] .admin-header {
+    background: #FFFFFF !important;
+    border-bottom-color: #E2E8F0 !important;
+}
+
+[data-admin-theme="light"] .admin-table th {
+    background: #F1F5F9 !important;
+    color: #475569 !important;
+}
+
+[data-admin-theme="light"] .admin-table td {
+    border-bottom-color: #F1F5F9 !important;
+    color: #1E293B !important;
+}
+
+[data-admin-theme="light"] .admin-modal {
+    background: #FFFFFF !important;
+    border-color: #E2E8F0 !important;
+}
+
+[data-admin-theme="light"] .admin-modal__title,
+[data-admin-theme="light"] .admin-card__title,
+[data-admin-theme="light"] .admin-header__title {
+    color: #0F172A !important;
+}
+
+[data-admin-theme="light"] .admin-form-input,
+[data-admin-theme="light"] .admin-form-select,
+[data-admin-theme="light"] .admin-form-textarea,
+[data-admin-theme="light"] .admin-search__input {
+    background: #F1F5F9 !important;
+    border-color: #CBD5E1 !important;
+    color: #0F172A !important;
+}
+
+[data-admin-theme="light"] .admin-sidebar__link {
+    color: #334155 !important;
+}
+
+[data-admin-theme="light"] .admin-sidebar__link i {
+    color: #7c3aed !important;
+}
+
+[data-admin-theme="light"] .admin-sidebar__link:hover {
+    color: #7c3aed !important;
+    background: rgba(124, 58, 237, 0.12) !important;
+}
+
+[data-admin-theme="light"] .admin-sidebar__link:hover i {
+    color: #7c3aed !important;
+}
+
+[data-admin-theme="light"] .admin-sidebar__link.active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%) !important;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3) !important;
+}
+
+[data-admin-theme="light"] .admin-sidebar__link.active i {
+    color: #ffffff !important;
 }
 
 /* ---- Body & Root Reset ---- */
@@ -59,28 +139,47 @@ body.admin-body #root {
 }
 
 .admin-sidebar__brand {
-    padding: 24px;
+    padding: 20px 24px;
     font-family: 'Manrope', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #fff;
     border-bottom: 1px solid var(--admin-card-border);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     text-decoration: none;
+    transition: background 0.2s ease;
 }
 
-.admin-sidebar__brand-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: var(--admin-accent-gradient);
+.admin-sidebar__brand:hover {
+    background: rgba(124, 58, 237, 0.05);
+}
+
+.admin-brand-logo-img {
+    height: 34px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(124, 58, 237, 0.35));
+}
+
+.admin-brand-text-wrap {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
+}
+
+.admin-brand-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.admin-brand-badge {
+    font-size: 0.62rem;
+    font-weight: 800;
+    color: #c084fc;
+    letter-spacing: 0.12em;
+    margin-top: 2px;
 }
 
 .admin-sidebar__nav {
@@ -738,21 +837,82 @@ body.admin-body #root {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--admin-bg);
-    background-image:
-        radial-gradient(ellipse at 20% 50%, rgba(108, 99, 255, 0.08), transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(79, 70, 229, 0.06), transparent 50%);
-    padding: 20px;
+    background: #090D16;
+    background-image: 
+        radial-gradient(circle at 50% 25%, rgba(124, 58, 237, 0.22) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(79, 70, 229, 0.14) 0%, transparent 50%),
+        radial-gradient(circle at 10% 90%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
 }
 
 .admin-login-card {
-    background: var(--admin-card-bg);
-    border: 1px solid var(--admin-card-border);
-    border-radius: 20px;
-    padding: 44px;
+    background: rgba(24, 18, 48, 0.85) !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(124, 58, 237, 0.25) !important;
+    border-radius: 24px;
+    padding: 44px 36px;
     width: 100%;
-    max-width: 420px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    max-width: 450px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(124, 58, 237, 0.15) !important;
+    position: relative;
+    z-index: 2;
+}
+
+.admin-login-card .admin-form-input {
+    background: rgba(15, 23, 42, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    font-size: 0.95rem;
+    padding: 13px 16px;
+    border-radius: 10px;
+    transition: all 0.25s ease;
+}
+
+.admin-login-card .admin-form-input:focus {
+    border-color: #7c3aed !important;
+    box-shadow: 0 0 0 3.5px rgba(124, 58, 237, 0.3) !important;
+    background: rgba(15, 23, 42, 0.95) !important;
+}
+
+.admin-login-card .admin-form-label {
+    color: #cbd5e1 !important;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.admin-chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.admin-chip {
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.35);
+    color: #c084fc;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.admin-chip:hover {
+    background: rgba(124, 58, 237, 0.3);
+    border-color: #7c3aed;
+    color: #ffffff;
+    transform: translateY(-1px);
 }
 
 .admin-login-logo {

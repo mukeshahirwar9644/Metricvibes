@@ -46,7 +46,7 @@ export default function TrustedBy() {
     line-height: 1.25;
 }
 .tools-title-gradient {
-    background: linear-gradient(135deg, #7851a9 0%, #9333ea 50%, #d4af37 100%);
+    background: linear-gradient(135deg, #7c3aed 0%, #9333ea 50%, #c084fc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -125,28 +125,26 @@ export default function TrustedBy() {
 
 /* Brand specific styling to mimic logos */
 .logo-adobe {
+    display: flex;
+    align-items: center;
     gap: 8px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #1a1a1a;
 }
-.logo-adobe .icon-box {
-    background: #110F24;
-    color: #fff;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.logo-adobe .adobe-badge {
+    background: #FA0F00;
+    width: 26px;
+    height: 32px;
+    border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    padding: 3px 4px;
+    box-sizing: border-box;
+    flex-shrink: 0;
 }
-.logo-adobe .text-stack {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    line-height: 1.1;
-    font-size: 0.85rem;
-    color: #1a1a1a;
-}
-[data-theme="dark"] .logo-adobe .text-stack { color: #fff; }
+[data-theme="dark"] .logo-adobe { color: #ffffff; }
 
 .logo-vwo {
     color: #C51B5A;
@@ -228,11 +226,12 @@ export default function TrustedBy() {
                 {/*  Group 1  */}
                 <div className="tool-logo logo-mixpanel">Mixpanel</div>
                 <div className="tool-logo logo-adobe">
-                    <div className="icon-box"><i className="fas fa-chart-line"></i></div>
-                    <div className="text-stack">
-                        <span>Adobe</span>
-                        <span>Analytics</span>
+                    <div className="adobe-badge">
+                        <svg viewBox="0 0 512 426.67" style={{ width: "100%", height: "100%" }}>
+                            <path fill="#FFFFFF" d="M312.4 0h199.6v426.7H312.4zM0 0h199.6v426.7H0zM256 158.2l76.7 186.3h-52.6l-20.1-51.5h-55.8L256 158.2z"/>
+                        </svg>
                     </div>
+                    <span>Adobe</span>
                 </div>
                 <div className="tool-logo logo-vwo">VWO</div>
                 <div className="tool-logo logo-firebase">
@@ -254,11 +253,12 @@ export default function TrustedBy() {
                 {/*  Group 2 (Duplicate for smooth scroll)  */}
                 <div className="tool-logo logo-mixpanel">Mixpanel</div>
                 <div className="tool-logo logo-adobe">
-                    <div className="icon-box"><i className="fas fa-chart-line"></i></div>
-                    <div className="text-stack">
-                        <span>Adobe</span>
-                        <span>Analytics</span>
+                    <div className="adobe-badge">
+                        <svg viewBox="0 0 512 426.67" style={{ width: "100%", height: "100%" }}>
+                            <path fill="#FFFFFF" d="M312.4 0h199.6v426.7H312.4zM0 0h199.6v426.7H0zM256 158.2l76.7 186.3h-52.6l-20.1-51.5h-55.8L256 158.2z"/>
+                        </svg>
                     </div>
+                    <span>Adobe</span>
                 </div>
                 <div className="tool-logo logo-vwo">VWO</div>
                 <div className="tool-logo logo-firebase">

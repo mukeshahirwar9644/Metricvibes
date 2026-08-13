@@ -25,8 +25,7 @@ try:
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     Base = declarative_base()
 except Exception as e:
-    print(f"Error connecting to database: {e}")
-    # Fallback to sqlite if mysql fails (for local testing without remote mysql)
+    print(f"⚠️ [DATABASE WARNING] Failed to connect to MySQL database ({e}). Falling back to local SQLite.")
     SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
     engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const caseStudiesDetailsData = {
@@ -95,10 +95,59 @@ const caseStudiesDetailsData = {
     }
 };
 
+import { API_BASE_URL } from '../config/api';
+
 export default function CaseStudyDetail() {
     const { slug } = useParams();
+    const [studyData, setStudyData] = useState(null);
 
-    const currentStudy = caseStudiesDetailsData[slug] || caseStudiesDetailsData["how-metric-vibes-enhanced-mobile-app-conversions"];
+    const fallbackStudy = caseStudiesDetailsData[slug] || caseStudiesDetailsData["how-metric-vibes-enhanced-mobile-app-conversions"];
+    const currentStudy = studyData || fallbackStudy;
+
+    useEffect(() => {
+        fetch(`${API_BASE_URL}/api/case-studies`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success' && data.data) {
+                    const found = data.data.find(s => s.slug === slug);
+                    if (found) {
+                        // Parse string goals/results/tools if needed
+                        const parsedGoals = typeof found.goals === 'string' ? found.goals.split('\n').filter(Boolean) : (found.goals || fallbackStudy.goals);
+                        const parsedResults = typeof found.results === 'string' ? found.results.split('\n').filter(Boolean) : (found.results || fallbackStudy.results);
+                        const parsedTools = typeof found.tools === 'string' ? found.tools.split(',').map(t => t.trim()).filter(Boolean) : (found.tools || fallbackStudy.tools);
+
+                        const stats = [
+                            found.metric_1_value ? { value: found.metric_1_value, label: found.metric_1_label } : null,
+                            found.metric_2_value ? { value: found.metric_2_value, label: found.metric_2_label } : null,
+                            found.metric_3_value ? { value: found.metric_3_value, label: found.metric_3_label } : null,
+                        ].filter(Boolean);
+
+                        setStudyData({
+                            title: found.title,
+                            about: found.about || found.description || fallbackStudy.about,
+                            challenge: found.challenge || fallbackStudy.challenge,
+                            goals: parsedGoals.length > 0 ? parsedGoals : fallbackStudy.goals,
+                            results: parsedResults.length > 0 ? parsedResults : fallbackStudy.results,
+                            tools: parsedTools.length > 0 ? parsedTools : fallbackStudy.tools,
+                            stats: stats.length > 0 ? stats : fallbackStudy.stats,
+                            testimonial: found.testimonial_quote ? {
+                                name: found.testimonial_name || 'Client Representative',
+                                role: found.testimonial_role || 'Partner',
+                                quote: found.testimonial_quote,
+                                avatar: found.testimonial_avatar || '/assets/img/team/Eugene Paik.jpg'
+                            } : fallbackStudy.testimonial
+                        });
+                    }
+                }
+            })
+            .catch(() => {});
+    }, [slug]);
+
+    useEffect(() => {
+        if (currentStudy && currentStudy.title) {
+            document.title = `${currentStudy.title} | MetricVibes Case Study`;
+        }
+    }, [currentStudy]);
 
     return (
         <div id="case-study-detail-wrapper">

@@ -64,6 +64,15 @@ class CaseStudy(Base):
     metric_3_label = Column(String(100), nullable=True)
     color1 = Column(String(20), nullable=True)
     color2 = Column(String(20), nullable=True)
+    about = Column(Text, nullable=True)
+    challenge = Column(Text, nullable=True)
+    goals = Column(Text, nullable=True)
+    results = Column(Text, nullable=True)
+    tools = Column(String(255), nullable=True)
+    testimonial_name = Column(String(100), nullable=True)
+    testimonial_role = Column(String(100), nullable=True)
+    testimonial_avatar = Column(String(255), nullable=True)
+    testimonial_quote = Column(Text, nullable=True)
     created_at = Column(DateTime, default=func.now())
 
 class Service(Base):
@@ -103,6 +112,7 @@ class Career(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255), nullable=False)
+    slug = Column(String(255), nullable=True)
     department = Column(String(100), nullable=True)
     location = Column(String(100), nullable=True)
     employment_type = Column(String(50), nullable=True)
