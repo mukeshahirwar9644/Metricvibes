@@ -1,5 +1,11 @@
 
 [data-theme="dark"] {
+    --bg-main: #0c0716;
+    --bg-alt: #130b24;
+    --card-bg: #1a0f32;
+    --heading-color: #F8FAFC;
+    --text-color: #E2E8F0;
+    --text-muted: #94A3B8;
     --surface-primary: var(--color-primary);
     --surface-secondary: #402c66;
     --surface-tertiary: var(--color-secondary);
@@ -9,7 +15,6 @@
     --surface-glass-border: rgba(255, 255, 255, 0.08);
     --text-primary: #F8FAFC;
     --text-secondary: #94A3B8;
-    --text-muted: #64748B;
     --text-link: var(--color-accent-secondary);
     --text-link-hover: var(--color-accent);
     --border-color: rgba(255, 255, 255, 0.08);
@@ -314,15 +319,15 @@
 }
 
 [data-theme="dark"] .job-card {
-    background: rgba(255, 255, 255, 0.04) !important;
-    border-color: rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    background: #180e30 !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
 }
 
 [data-theme="dark"] .job-card:hover {
-    background: rgba(255, 255, 255, 0.07) !important;
-    border-color: rgba(167, 139, 250, 0.4) !important;
-    box-shadow: 0 18px 40px rgba(124, 58, 237, 0.25) !important;
+    background: #231445 !important;
+    border-color: rgba(167, 139, 250, 0.5) !important;
+    box-shadow: 0 18px 40px rgba(124, 58, 237, 0.3) !important;
 }
 
 [data-theme="dark"] .job-card__title {
@@ -365,9 +370,9 @@
 }
 
 [data-theme="dark"] .featured-role-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
-    border-color: rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4) !important;
+    background: #180e30 !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5) !important;
 }
 
 [data-theme="dark"] .featured-role-badge {
@@ -385,8 +390,8 @@
 }
 
 [data-theme="dark"] .featured-subcard {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border-color: rgba(255, 255, 255, 0.08) !important;
+    background: #231445 !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
 }
 
 [data-theme="dark"] .featured-subcard-title {
