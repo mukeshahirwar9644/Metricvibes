@@ -58,6 +58,9 @@
 [data-theme="dark"] .hero-partner-badge-text {
     color: #F8FAFC !important;
 }
+[data-theme="dark"] .dashboard-stat-val {
+    color: #a78bfa !important;
+}
 [data-theme="dark"] ::-webkit-scrollbar-track {
     background: var(--color-secondary);
 }

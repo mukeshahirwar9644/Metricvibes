@@ -593,7 +593,7 @@ export default function AnalyticsDashboard() {
           }}
         >
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '1.4rem', fontWeight: '800', color: '#0f172a', letterSpacing: '-0.03em' }}>
+            <div className="dashboard-stat-val" style={{ fontSize: '1.4rem', fontWeight: '800', letterSpacing: '-0.03em' }}>
               <AnimCount value={50} suffix="+" />
             </div>
             <div style={{ fontSize: '0.6rem', fontWeight: '700', color: '#94a3b8', letterSpacing: '0.08em', marginTop: '2px' }}>
@@ -601,7 +601,7 @@ export default function AnalyticsDashboard() {
             </div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '1.4rem', fontWeight: '800', color: '#0f172a', letterSpacing: '-0.03em' }}>
+            <div className="dashboard-stat-val" style={{ fontSize: '1.4rem', fontWeight: '800', letterSpacing: '-0.03em' }}>
               <AnimCount value={5} suffix="+" />
             </div>
             <div style={{ fontSize: '0.6rem', fontWeight: '700', color: '#94a3b8', letterSpacing: '0.08em', marginTop: '2px' }}>
