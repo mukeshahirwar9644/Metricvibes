@@ -404,6 +404,11 @@ export default function AnalyticsDashboard() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+          e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        }}
         style={{
           position: 'relative',
           borderRadius: '20px',
