@@ -7,7 +7,7 @@ export default function CaseStudiesPage() {
             {/* Hero Section */}
             <section style={{
                 background: "linear-gradient(135deg, rgba(26, 11, 54, 0.96) 0%, rgba(45, 16, 90, 0.95) 100%), url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover",
-                padding: "135px 0 45px",
+                padding: "135px 0 15px",
                 color: "white",
                 textAlign: "center"
             }}>
@@ -37,7 +37,7 @@ export default function CaseStudiesPage() {
             </section>
 
             {/* Case Studies Grid Section */}
-            <div style={{ padding: "40px 0 80px" }}>
+            <div style={{ padding: "0 0 60px" }}>
                 <CaseStudies hideHeader={true} />
             </div>
         </main>

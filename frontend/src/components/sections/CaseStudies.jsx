@@ -85,7 +85,7 @@ export default function CaseStudies({ hideHeader }) {
     );
 
     return (
-        <section className="section" id="case-studies">
+        <section className="section" id="case-studies" style={hideHeader ? { paddingTop: "15px", paddingBottom: "40px" } : {}}>
             <div className="container">
                 
                 {!hideHeader && (
@@ -99,7 +99,7 @@ export default function CaseStudies({ hideHeader }) {
                 )}
 
                 {hideHeader && (
-                    <div style={{maxWidth: "700px", margin: "0 auto 50px"}}>
+                    <div style={{maxWidth: "700px", margin: "0 auto 24px"}}>
                         <div style={{
                             display: "flex", 
                             alignItems: "center", 
