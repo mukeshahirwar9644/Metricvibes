@@ -569,13 +569,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-12);
-    align-items: center;
+    align-items: flex-start;
     flex: 1;
 }
 
 .hero__content {
     max-width: 620px;
-    padding: var(--space-8) 0;
+    padding: 0;
 }
 
 .hero__badge {
