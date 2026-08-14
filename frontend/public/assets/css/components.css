@@ -690,8 +690,18 @@
     border: 1px solid rgba(0,0,0,0.06);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     transition: all 0.3s ease;
+}
+
+@media (max-width: 767.98px) {
+    .hero-partner-badge {
+        width: 270px;
+        max-width: 92%;
+        min-height: 48px;
+        justify-content: center;
+    }
 }
 
 .hero-partner-badge-text {
