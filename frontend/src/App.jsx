@@ -17,6 +17,8 @@ import BlogPage from './pages/BlogPage';
 import BlogDetail from './pages/BlogDetail';
 import ContactPage from './pages/ContactPage';
 import DataTrackingSecurity from './pages/DataTrackingSecurity';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 import BusinessIntelligence from './pages/BusinessIntelligence';
 import VwoPartnership from './pages/VwoPartnership';
 import MixpanelPartnership from './pages/MixpanelPartnership';
@@ -89,8 +91,8 @@ function App() {
             <Route path="/partnerships/zoho" element={<ZohoPartnership />} />
             <Route path="/data-tracking-security" element={<DataTrackingSecurity />} />
             <Route path="/data-tracking-security/:page" element={<DataTrackingSecurity />} />
-            <Route path="/privacy" element={<DataTrackingSecurity />} />
-            <Route path="/terms" element={<DataTrackingSecurity />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
             <Route path="/services/:id" element={<ServiceDetail />} />
             <Route path="/case-studies" element={<CaseStudiesPage />} />
             <Route path="/case-study" element={<CaseStudiesPage />} />

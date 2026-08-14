@@ -34,37 +34,37 @@ export default function ServerSideTracking() {
             {/* Hero Section */}
             <section style={{
                 background: "linear-gradient(135deg, rgba(38, 14, 82, 0.95) 0%, rgba(59, 19, 120, 0.95) 100%), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover",
-                padding: "92px 0 16px",
+                padding: "135px 0 24px",
                 color: "white",
                 textAlign: "left",
                 position: "relative"
             }}>
                 <div className="container">
                     <div style={{ maxWidth: "800px" }}>
-                        <span className="section__badge" style={{ marginBottom: "6px", display: "inline-flex", fontSize: "0.72rem", padding: "2px 10px" }}>
+                        <span className="section__badge" style={{ marginBottom: "10px", display: "inline-flex", fontSize: "0.82rem", padding: "4px 14px" }}>
                             <i className="fas fa-server"></i> Infrastructure & Tracking
                         </span>
-                        <h1 style={{ fontSize: "1.95rem", fontWeight: "800", marginBottom: "6px", color: "white", lineHeight: "1.25", letterSpacing: "-0.01em" }}>
+                        <h1 style={{ fontSize: "2.4rem", fontWeight: "800", marginBottom: "10px", color: "white", lineHeight: "1.2", letterSpacing: "-0.01em" }}>
                             Server-Side <span className="text-gradient">Tracking</span>
                         </h1>
-                        <p style={{ fontSize: "0.92rem", marginBottom: "12px", color: "rgba(255, 255, 255, 0.9)", lineHeight: "1.45", maxWidth: "700px" }}>
-                            Transform Your Digital Campaigns with Server-Side Monitoring!
+                        <p style={{ fontSize: "1.02rem", marginBottom: "16px", color: "rgba(255, 255, 255, 0.9)", lineHeight: "1.5", maxWidth: "720px" }}>
+                            Transform Your Digital Campaigns with First-Party Server-Side Monitoring & Privacy Compliance!
                         </p>
                         <Link to="/contact" style={{
                             display: "inline-flex",
                             alignItems: "center",
-                            gap: "6px",
-                            padding: "7px 20px",
+                            gap: "8px",
+                            padding: "12px 30px",
                             borderRadius: "30px",
                             background: "#ffffff",
                             color: "#260e52",
                             fontWeight: "700",
-                            fontSize: "0.85rem",
+                            fontSize: "0.95rem",
                             textDecoration: "none",
-                            boxShadow: "0 5px 15px rgba(0,0,0,0.15)",
+                            boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
                             transition: "all 0.3s ease"
                         }}>
-                            Get Free Audit <i className="fas fa-arrow-right" style={{ fontSize: "0.75rem" }}></i>
+                            Get Free Audit <i className="fas fa-arrow-right" style={{ fontSize: "0.85rem" }}></i>
                         </Link>
                     </div>
                 </div>

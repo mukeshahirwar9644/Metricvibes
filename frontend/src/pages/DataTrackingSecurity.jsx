@@ -91,7 +91,7 @@ export default function DataTrackingSecurity() {
             {/* Hero Section */}
             <section style={{
                 background: "linear-gradient(135deg, rgba(38, 14, 82, 0.95) 0%, rgba(59, 19, 120, 0.95) 100%), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover",
-                padding: "145px 0 42px",
+                padding: "135px 0 24px",
                 color: "white",
                 textAlign: "left",
                 position: "relative"

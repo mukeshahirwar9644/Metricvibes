@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { API_BASE_URL } from '../config/api';
 
@@ -14,6 +14,20 @@ export default function BlogDetail() {
     const [replyingTo, setReplyingTo] = useState(null); // { id, authorName }
     const [submitting, setSubmitting] = useState(false);
     const [submitMessage, setSubmitMessage] = useState(null);
+
+    const fetchComments = useCallback(() => {
+        fetch(`${API_BASE_URL}/api/blogs/${slug}/comments`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "success") {
+                    setComments(data.data || []);
+                    setTotalComments(data.total_count || 0);
+                }
+            })
+            .catch(err => {
+                console.error("Error fetching comments:", err);
+            });
+    }, [slug]);
 
     useEffect(() => {
         fetch(`${API_BASE_URL}/api/blogs/${slug}`)
@@ -31,21 +45,7 @@ export default function BlogDetail() {
             });
 
         fetchComments();
-    }, [slug]);
-
-    const fetchComments = () => {
-        fetch(`${API_BASE_URL}/api/blogs/${slug}/comments`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === "success") {
-                    setComments(data.data || []);
-                    setTotalComments(data.total_count || 0);
-                }
-            })
-            .catch(err => {
-                console.error("Error fetching comments:", err);
-            });
-    };
+    }, [slug, fetchComments]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;

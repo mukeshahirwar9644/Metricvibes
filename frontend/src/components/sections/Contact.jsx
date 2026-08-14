@@ -56,7 +56,6 @@ export default function Contact() {
     });
     const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
     const [isCountryOpen, setIsCountryOpen] = useState(false);
-    const [countrySearch, setCountrySearch] = useState('');
     const [status, setStatus] = useState('');
     const [openFaqIndexes, setOpenFaqIndexes] = useState({});
     const dropdownRef = useRef(null);

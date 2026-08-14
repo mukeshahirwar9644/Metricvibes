@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
-  Activity,
-  BarChart3,
-  CheckCircle2,
-  Cloud,
   Sparkles,
   TrendingUp,
-  Zap,
   Target,
   Trophy,
 } from 'lucide-react';

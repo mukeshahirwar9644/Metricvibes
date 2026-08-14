@@ -65,37 +65,37 @@ export default function BusinessIntelligence() {
             {/* Hero Section */}
             <section style={{
                 background: "linear-gradient(135deg, rgba(38, 14, 82, 0.95) 0%, rgba(59, 19, 120, 0.95) 100%), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover",
-                padding: "92px 0 16px",
+                padding: "135px 0 24px",
                 color: "white",
                 textAlign: "left",
                 position: "relative"
             }}>
                 <div className="container">
                     <div style={{ maxWidth: "800px" }}>
-                        <span className="section__badge" style={{ marginBottom: "6px", display: "inline-flex", fontSize: "0.72rem", padding: "2px 10px" }}>
+                        <span className="section__badge" style={{ marginBottom: "10px", display: "inline-flex", fontSize: "0.82rem", padding: "4px 14px" }}>
                             <i className="fas fa-chart-bar"></i> Analytics & Dashboards
                         </span>
-                        <h1 style={{ fontSize: "1.95rem", fontWeight: "800", marginBottom: "6px", color: "white", lineHeight: "1.25", letterSpacing: "-0.01em" }}>
+                        <h1 style={{ fontSize: "2.4rem", fontWeight: "800", marginBottom: "10px", color: "white", lineHeight: "1.2", letterSpacing: "-0.01em" }}>
                             Business <span className="text-gradient">Intelligence</span>
                         </h1>
-                        <p style={{ fontSize: "0.92rem", marginBottom: "12px", color: "rgba(255, 255, 255, 0.9)", lineHeight: "1.45", maxWidth: "700px" }}>
-                            Interactive dashboards & executive analytics reporting in Looker Studio, PowerBI & Tableau.
+                        <p style={{ fontSize: "1.02rem", marginBottom: "16px", color: "rgba(255, 255, 255, 0.9)", lineHeight: "1.5", maxWidth: "720px" }}>
+                            Interactive Dashboards & Executive Analytics Reporting in Looker Studio, PowerBI & Tableau!
                         </p>
                         <Link to="/contact" style={{
                             display: "inline-flex",
                             alignItems: "center",
-                            gap: "6px",
-                            padding: "7px 20px",
+                            gap: "8px",
+                            padding: "12px 30px",
                             borderRadius: "30px",
                             background: "#ffffff",
                             color: "#260e52",
                             fontWeight: "700",
-                            fontSize: "0.85rem",
+                            fontSize: "0.95rem",
                             textDecoration: "none",
-                            boxShadow: "0 5px 15px rgba(0,0,0,0.15)",
+                            boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
                             transition: "all 0.3s ease"
                         }}>
-                            Get Free Audit <i className="fas fa-arrow-right" style={{ fontSize: "0.75rem" }}></i>
+                            Get Free Audit <i className="fas fa-arrow-right" style={{ fontSize: "0.85rem" }}></i>
                         </Link>
                     </div>
                 </div>
