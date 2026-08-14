@@ -33,7 +33,7 @@ Featuring a cutting-edge **React + Vite** frontend, a high-speed **Python FastAP
 
 ---
 
-## 🛠️ Complete Tech Stack
+##  Complete Tech Stack
 
 ### **Frontend**
 | Technology | Description |
