@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom';
 import AnalyticsDashboard from './AnalyticsDashboard';
 
 export default function Hero() {
+    const handleMouseMove = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        e.currentTarget.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        e.currentTarget.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    };
+
     return (
         <>
             {/* Hero Section */}
@@ -73,7 +79,7 @@ export default function Hero() {
                             gap: '10px 14px'
                         }}>
                             {/* Adobe */}
-                            <div className="hero-partner-badge" style={{ animationDelay: "0s" }}>
+                            <div className="hero-partner-badge" style={{ animationDelay: "0s" }} onMouseMove={handleMouseMove}>
                                 <div style={{ background: "#FA0F00", width: "24px", height: "28px", borderRadius: "3px", display: "flex", alignItems: "center", justifyContent: "center", padding: "3px", flexShrink: 0 }}>
                                     <svg viewBox="0 0 512 426.67" style={{ width: "100%", height: "100%" }}>
                                         <path fill="#FFFFFF" d="M312.4 0h199.6v426.7H312.4zM0 0h199.6v426.7H0zM256 158.2l76.7 186.3h-52.6l-20.1-51.5h-55.8L256 158.2z"/>
@@ -83,14 +89,14 @@ export default function Hero() {
                             </div>
 
                             {/* Claude Partner */}
-                            <div className="hero-partner-badge" style={{ animationDelay: "0.6s" }}>
+                            <div className="hero-partner-badge" style={{ animationDelay: "0.6s" }} onMouseMove={handleMouseMove}>
                                 <i className="fas fa-certificate" style={{ color: "#d15c40", fontSize: '1.3rem' }}></i>
                                 <span className="hero-partner-badge-text" style={{ fontFamily: "Georgia, serif", fontSize: "1.15rem" }}>Claude</span>
                                 <span style={{ fontSize: "0.6rem", fontWeight: "800", color: "#7c3aed", textTransform: "uppercase", letterSpacing: "0.5px" }}>PARTNER IN INDIA</span>
                             </div>
 
                             {/* Zoho Analytics */}
-                            <div className="hero-partner-badge" style={{ animationDelay: "1.2s" }}>
+                            <div className="hero-partner-badge" style={{ animationDelay: "1.2s" }} onMouseMove={handleMouseMove}>
                                 <i className="fas fa-chart-line" style={{ color: "#f90b2b", fontSize: "1.4rem" }}></i>
                                 <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
                                     <span style={{ fontSize: "0.68rem", fontWeight: "600", color: "#94a3b8" }}>Zoho</span>
@@ -99,19 +105,19 @@ export default function Hero() {
                             </div>
 
                             {/* Google Cloud Partner */}
-                            <div className="hero-partner-badge" style={{ animationDelay: "1.8s" }}>
+                            <div className="hero-partner-badge" style={{ animationDelay: "1.8s" }} onMouseMove={handleMouseMove}>
                                 <i className="fab fa-google" style={{ color: "#4285F4", fontSize: "1.3rem" }}></i>
                                 <span className="hero-partner-badge-text" style={{ fontSize: '1.02rem' }}>Google Cloud Partner</span>
                             </div>
 
                             {/* Mixpanel Partner */}
-                            <div className="hero-partner-badge" style={{ animationDelay: "2.4s" }}>
+                            <div className="hero-partner-badge" style={{ animationDelay: "2.4s" }} onMouseMove={handleMouseMove}>
                                 <i className="fas fa-flask" style={{ color: "#7856FF", fontSize: "1.3rem" }}></i>
                                 <span className="hero-partner-badge-text" style={{ fontSize: '1.02rem' }}>Mixpanel Partner</span>
                             </div>
 
                             {/* ISO 9001:2015 */}
-                            <div className="hero-partner-badge" style={{ animationDelay: "3s" }}>
+                            <div className="hero-partner-badge" style={{ animationDelay: "3s" }} onMouseMove={handleMouseMove}>
                                 <i className="fas fa-award" style={{ color: "#7c3aed", fontSize: "1.3rem" }}></i>
                                 <span className="hero-partner-badge-text" style={{ fontSize: '1.02rem' }}>ISO 9001:2015</span>
                             </div>
