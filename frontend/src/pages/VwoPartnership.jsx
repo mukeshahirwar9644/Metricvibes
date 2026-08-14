@@ -37,7 +37,7 @@ export default function VwoPartnership() {
                 padding: "160px 0 100px",
                 color: "white",
             }}>
-                <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 450px", gap: "60px", alignItems: "center" }}>
+                <div className="container partnership-hero-grid">
                     <div>
                         <div style={{ backgroundColor: "white", padding: "15px 25px", borderRadius: "8px", display: "inline-flex", alignItems: "center", gap: "15px", marginBottom: "40px" }}>
                             <span style={{ color: "#333", fontWeight: "700", fontSize: "1.1rem" }}>vwo<br/><span style={{ fontSize: "0.8rem", fontWeight: "normal" }}>Certified Partner</span></span>

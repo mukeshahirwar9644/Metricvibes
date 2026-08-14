@@ -185,7 +185,7 @@ export default function CaseStudyDetail() {
 
             {/* Main Content Layout */}
             <section className="case-study-detail-section" style={{ padding: "80px 0" }}>
-                <div className="container" style={{ maxWidth: "1100px", display: "grid", gridTemplateColumns: "1fr 380px", gap: "60px" }}>
+                <div className="container case-study-detail-grid">
                     
                     {/* Left Column Content */}
                     <div>
@@ -311,7 +311,7 @@ export default function CaseStudyDetail() {
                             <form onSubmit={(e) => e.preventDefault()} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                                 <textarea placeholder="Type here.." rows="6" style={{ padding: "18px 20px", borderRadius: "8px", border: "1px solid #ddd", backgroundColor: "#fcfcfc", fontSize: "1rem", width: "100%", outline: "none" }}></textarea>
                                 
-                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "20px" }}>
+                                <div className="case-study-metrics-grid">
                                     <input type="text" placeholder="Name*" style={{ padding: "15px 20px", borderRadius: "8px", border: "1px solid #ddd", backgroundColor: "#fcfcfc", fontSize: "0.95rem", width: "100%" }} />
                                     <input type="email" placeholder="Email*" style={{ padding: "15px 20px", borderRadius: "8px", border: "1px solid #ddd", backgroundColor: "#fcfcfc", fontSize: "0.95rem", width: "100%" }} />
                                     <input type="url" placeholder="Website" style={{ padding: "15px 20px", borderRadius: "8px", border: "1px solid #ddd", backgroundColor: "#fcfcfc", fontSize: "0.95rem", width: "100%" }} />

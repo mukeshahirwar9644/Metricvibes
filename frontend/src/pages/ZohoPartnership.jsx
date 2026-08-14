@@ -37,7 +37,7 @@ export default function ZohoPartnership() {
                 padding: "160px 0 100px",
                 color: "white",
             }}>
-                <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 450px", gap: "60px", alignItems: "center" }}>
+                <div className="container partnership-hero-grid">
                     <div>
                         <div style={{ backgroundColor: "white", padding: "14px 26px", borderRadius: "12px", display: "inline-flex", alignItems: "center", gap: "20px", marginBottom: "35px", boxShadow: "0 10px 25px rgba(0,0,0,0.12)" }}>
                             <div style={{ display: "flex", flexDirection: "column" }}>
