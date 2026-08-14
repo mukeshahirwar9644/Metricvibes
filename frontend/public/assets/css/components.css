@@ -3848,3 +3848,52 @@ body.has-announcement .navbar {
     box-shadow: 0 15px 30px rgba(124, 58, 237, 0.1);
     border-color: rgba(124, 58, 237, 0.3);
 }
+
+/* Responsive Grid Helper Classes for Subpages */
+.responsive-why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.responsive-bento-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    position: relative;
+}
+
+.responsive-feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+@media (max-width: 991.98px) {
+    .responsive-why-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+    .responsive-feature-row {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .responsive-bento-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    
+    .responsive-bento-overlay {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin-top: 12px !important;
+    }
+}

@@ -124,7 +124,7 @@ export default function ZohoPartnership() {
 
                     <div style={{ display: "flex", flexDirection: "column", gap: "80px", maxWidth: "900px", margin: "0 auto" }}>
                         {/* Feature 1 */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center" }}>
+                        <div className="responsive-feature-row">
                             <div>
                                 <h3 style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "15px", color: "white" }}>Data Blending & Unification</h3>
                                 <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.8)", lineHeight: "1.6" }}>Build custom visualizations with minimal technical effort.</p>
@@ -134,7 +134,7 @@ export default function ZohoPartnership() {
                             </div>
                         </div>
                         {/* Feature 2 */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center" }}>
+                        <div className="responsive-feature-row">
                             <div style={{ textAlign: "center", order: 1 }}>
                                 <img src="https://cdni.iconscout.com/illustration/premium/thumb/web-development-3454628-2918517.png" alt="Drag and Drop Dashboard" style={{ maxWidth: "250px", transition: "transform 0.4s ease" }} className="img-hover-float" />
                             </div>
@@ -144,7 +144,7 @@ export default function ZohoPartnership() {
                             </div>
                         </div>
                         {/* Feature 3 */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center" }}>
+                        <div className="responsive-feature-row">
                             <div>
                                 <h3 style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "15px", color: "white" }}>Automated Data Alerts</h3>
                                 <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.8)", lineHeight: "1.6" }}>Get notified of significant changes or trends that need immediate attention.</p>
@@ -154,7 +154,7 @@ export default function ZohoPartnership() {
                             </div>
                         </div>
                         {/* Feature 4 */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center" }}>
+                        <div className="responsive-feature-row">
                             <div style={{ textAlign: "center", order: 1 }}>
                                 <img src="https://cdni.iconscout.com/illustration/premium/thumb/data-security-3454634-2918523.png" alt="Collaboration & Sharing" style={{ maxWidth: "250px", transition: "transform 0.4s ease" }} className="img-hover-float" />
                             </div>

@@ -112,7 +112,7 @@ export default function MixpanelPartnership() {
 
                     <div style={{ display: "flex", flexDirection: "column", gap: "80px", maxWidth: "900px", margin: "0 auto" }}>
                         {/* Feature 1 */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center" }}>
+                        <div className="responsive-feature-row">
                             <div>
                                 <h3 style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "15px", color: "white" }}>Funnel & Retention Analysis</h3>
                                 <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.8)", lineHeight: "1.6" }}>Discover where users drop off and what drives repeat engagement.</p>
@@ -122,7 +122,7 @@ export default function MixpanelPartnership() {
                             </div>
                         </div>
                         {/* Feature 2 */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center" }}>
+                        <div className="responsive-feature-row">
                             <div style={{ textAlign: "center", order: 1 }}>
                                 <img src="https://cdni.iconscout.com/illustration/premium/thumb/business-dashboard-3454631-2918520.png" alt="Cohort Segmentation" style={{ maxWidth: "250px", transition: "transform 0.4s ease" }} className="img-hover-float" />
                             </div>
@@ -132,7 +132,7 @@ export default function MixpanelPartnership() {
                             </div>
                         </div>
                         {/* Feature 3 */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center" }}>
+                        <div className="responsive-feature-row">
                             <div>
                                 <h3 style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "15px", color: "white" }}>A/B Testing & Experimentation</h3>
                                 <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.8)", lineHeight: "1.6" }}>Validate hypotheses quickly to implement winning user experiences.</p>
@@ -142,7 +142,7 @@ export default function MixpanelPartnership() {
                             </div>
                         </div>
                         {/* Feature 4 */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center" }}>
+                        <div className="responsive-feature-row">
                             <div style={{ textAlign: "center", order: 1 }}>
                                 <img src="https://cdni.iconscout.com/illustration/premium/thumb/data-security-3454634-2918523.png" alt="Advanced User Profiling" style={{ maxWidth: "250px", transition: "transform 0.4s ease" }} className="img-hover-float" />
                             </div>

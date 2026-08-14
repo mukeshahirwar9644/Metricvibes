@@ -109,7 +109,7 @@ export default function ServerSideTracking() {
 
             {/* Why Section */}
             <section style={{ backgroundColor: "var(--color-primary)", padding: "100px 0", color: "white" }}>
-                <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+                <div className="container responsive-why-grid">
                     <div>
                         <h2 style={{ fontSize: "2.5rem", marginBottom: "40px", fontWeight: "600" }}>Why Your Business Needs Server Side Tracking</h2>
                         <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
@@ -135,23 +135,23 @@ export default function ServerSideTracking() {
                         </div>
                     </div>
                     <div style={{ position: "relative" }}>
-                        {/* Bento Grid visualization mimicking the screenshot */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "15px" }}>
-                            <div style={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "30px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", height: "150px" }}>
-                                <span style={{ fontWeight: "600", textTransform: "uppercase" }}>GDPR<br/>Compliance &<br/>Data Security</span>
+                        {/* Bento Grid visualization */}
+                        <div className="responsive-bento-grid">
+                            <div style={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "20px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "130px" }}>
+                                <span style={{ fontWeight: "600", textTransform: "uppercase", fontSize: "0.85rem" }}>GDPR<br/>Compliance &<br/>Data Security</span>
                             </div>
-                            <div style={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "30px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", height: "150px" }}>
-                                <span style={{ fontWeight: "600", textTransform: "uppercase" }}>First-Party<br/>Data Hosting</span>
+                            <div style={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "20px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "130px" }}>
+                                <span style={{ fontWeight: "600", textTransform: "uppercase", fontSize: "0.85rem" }}>First-Party<br/>Data Hosting</span>
                             </div>
-                            <div style={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "30px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", height: "150px" }}>
-                                <span style={{ fontWeight: "600", textTransform: "uppercase" }}>Unified Tracking<br/>for Multiple<br/>Platforms</span>
+                            <div style={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "20px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "130px" }}>
+                                <span style={{ fontWeight: "600", textTransform: "uppercase", fontSize: "0.85rem" }}>Unified Tracking<br/>for Multiple<br/>Platforms</span>
                             </div>
-                            <div style={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "30px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", height: "150px" }}>
-                                <span style={{ fontWeight: "600", textTransform: "uppercase" }}>Ad Blocker<br/>Resistance</span>
+                            <div style={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "20px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "130px" }}>
+                                <span style={{ fontWeight: "600", textTransform: "uppercase", fontSize: "0.85rem" }}>Ad Blocker<br/>Resistance</span>
                             </div>
                         </div>
                         {/* Center overlay box */}
-                        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "rgba(255,255,255,0.9)", color: "var(--color-primary)", padding: "20px 30px", borderRadius: "8px", fontWeight: "700", textAlign: "center", boxShadow: "0 10px 30px rgba(0,0,0,0.3)" }}>
+                        <div className="responsive-bento-overlay" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "rgba(255,255,255,0.9)", color: "var(--color-primary)", padding: "16px 24px", borderRadius: "8px", fontWeight: "700", textAlign: "center", boxShadow: "0 10px 30px rgba(0,0,0,0.3)", fontSize: "0.85rem" }}>
                             DECREASED<br/>WEBSITE<br/>LOAD TIME
                         </div>
                     </div>

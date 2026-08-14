@@ -168,7 +168,7 @@ export default function DataTrackingSecurity() {
 
             {/* Why Section */}
             <section style={{ backgroundColor: "var(--color-primary)", padding: "100px 0", color: "white" }}>
-                <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+                <div className="container responsive-why-grid">
                     <div>
                         <h2 style={{ fontSize: "2.5rem", marginBottom: "40px", fontWeight: "600", color: "white" }}>Why Your Business Need Analytics Tracking & Security Services</h2>
                         <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
@@ -194,23 +194,23 @@ export default function DataTrackingSecurity() {
                         </div>
                     </div>
                     <div style={{ position: "relative" }}>
-                        {/* Bento Grid visualization mimicking the screenshot */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "15px" }}>
-                            <div style={{ backgroundColor: "#cca8ff", color: "var(--color-primary)", padding: "30px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", height: "180px", fontWeight: "700", fontSize: "1.2rem", textTransform: "uppercase" }}>
+                        {/* Bento Grid visualization */}
+                        <div className="responsive-bento-grid">
+                            <div style={{ backgroundColor: "#cca8ff", color: "var(--color-primary)", padding: "20px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "140px", fontWeight: "700", fontSize: "0.95rem", textTransform: "uppercase" }}>
                                 MONITORING<br/>WEBSITE AND<br/>APP ACTIVITY
                             </div>
-                            <div style={{ backgroundColor: "#502c84", color: "white", padding: "30px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", height: "180px", fontWeight: "700", fontSize: "1.2rem", textTransform: "uppercase" }}>
+                            <div style={{ backgroundColor: "#502c84", color: "white", padding: "20px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "140px", fontWeight: "700", fontSize: "0.95rem", textTransform: "uppercase" }}>
                                 PROMOTIONAL<br/>INITIATIVE
                             </div>
-                            <div style={{ backgroundColor: "#502c84", color: "white", padding: "30px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", height: "180px", fontWeight: "700", fontSize: "1.2rem", textTransform: "uppercase" }}>
+                            <div style={{ backgroundColor: "#502c84", color: "white", padding: "20px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "140px", fontWeight: "700", fontSize: "0.95rem", textTransform: "uppercase" }}>
                                 DIRECT DATA<br/>COLLECTION
                             </div>
-                            <div style={{ backgroundColor: "#cca8ff", color: "var(--color-primary)", padding: "30px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", height: "180px", fontWeight: "700", fontSize: "1.2rem", textTransform: "uppercase" }}>
+                            <div style={{ backgroundColor: "#cca8ff", color: "var(--color-primary)", padding: "20px", borderRadius: "10px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", minHeight: "140px", fontWeight: "700", fontSize: "0.95rem", textTransform: "uppercase" }}>
                                 OFFLINE DATA<br/>MONITORING
                             </div>
                         </div>
                         {/* Center overlay box */}
-                        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "#eaddff", color: "var(--color-primary)", padding: "30px 40px", borderRadius: "8px", fontWeight: "700", fontSize: "1.2rem", textAlign: "center", boxShadow: "0 10px 30px rgba(0,0,0,0.3)", zIndex: 10 }}>
+                        <div className="responsive-bento-overlay" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", backgroundColor: "#eaddff", color: "var(--color-primary)", padding: "18px 24px", borderRadius: "8px", fontWeight: "700", fontSize: "0.95rem", textAlign: "center", boxShadow: "0 10px 30px rgba(0,0,0,0.3)", zIndex: 10 }}>
                             PRIVACY<br/>PREFERENCE<br/>MANAGEMENT
                         </div>
                     </div>

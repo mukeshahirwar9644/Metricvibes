@@ -112,7 +112,7 @@ export default function VwoPartnership() {
 
                     <div style={{ display: "flex", flexDirection: "column", gap: "80px", maxWidth: "900px", margin: "0 auto" }}>
                         {/* Feature 1 */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center" }}>
+                        <div className="responsive-feature-row">
                             <div>
                                 <h3 style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "15px", color: "white" }}>Visual Editor for A/B Tests</h3>
                                 <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.8)", lineHeight: "1.6" }}>Quickly create design variations without heavy coding.</p>
@@ -122,7 +122,7 @@ export default function VwoPartnership() {
                             </div>
                         </div>
                         {/* Feature 2 */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center" }}>
+                        <div className="responsive-feature-row">
                             <div style={{ textAlign: "center", order: 1 }}>
                                 <img src="https://cdni.iconscout.com/illustration/premium/thumb/data-analysis-3454629-2918518.png" alt="Behavioral Targeting" style={{ maxWidth: "250px", transition: "transform 0.4s ease" }} className="img-hover-float" />
                             </div>
@@ -132,7 +132,7 @@ export default function VwoPartnership() {
                             </div>
                         </div>
                         {/* Feature 3 */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center" }}>
+                        <div className="responsive-feature-row">
                             <div>
                                 <h3 style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "15px", color: "white" }}>Detailed Experiment Analytics</h3>
                                 <p style={{ fontSize: "1rem", color: "rgba(255,255,255,0.8)", lineHeight: "1.6" }}>Get clear, visual reports on test results and next steps.</p>
@@ -142,7 +142,7 @@ export default function VwoPartnership() {
                             </div>
                         </div>
                         {/* Feature 4 */}
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "40px", alignItems: "center" }}>
+                        <div className="responsive-feature-row">
                             <div style={{ textAlign: "center", order: 1 }}>
                                 <img src="https://cdni.iconscout.com/illustration/premium/thumb/data-security-3454634-2918523.png" alt="Advanced Segmentation" style={{ maxWidth: "250px", transition: "transform 0.4s ease" }} className="img-hover-float" />
                             </div>
