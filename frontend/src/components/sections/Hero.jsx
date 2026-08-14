@@ -55,7 +55,8 @@ export default function Hero() {
                         maxWidth: '620px',
                         margin: '0 auto',
                         position: 'relative',
-                        zIndex: 10
+                        zIndex: 10,
+                        transform: 'translateY(-14px)'
                     }}>
                         {/* 1. Analytics Dashboard Card */}
                         <div style={{ width: '100%', maxWidth: '480px' }}>
@@ -65,11 +66,11 @@ export default function Hero() {
                         {/* 2. Partner & Certification Badges Underneath Card */}
                         <div style={{
                             width: '100%',
-                            marginTop: '24px',
+                            marginTop: '12px',
                             display: 'flex',
                             flexWrap: 'wrap',
                             justifyContent: 'center',
-                            gap: '14px 18px'
+                            gap: '10px 14px'
                         }}>
                             {/* Adobe */}
                             <div className="hero-partner-badge">
